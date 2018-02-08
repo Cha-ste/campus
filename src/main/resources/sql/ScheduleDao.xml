@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.dao.ScheduleDao">
+	<resultMap id="schedule" type="com.ocean.model.Schedule">
+		<result property="id" column="id"/> 
+		<result property="courseNo" column="course_no"/> 
+		<result property="courseName" column="course_name"/> 
+		<result property="teacherNo" column="teacher_no"/> 
+		<result property="teacherName" column="teacher_name"/> 
+		<result property="classNo" column="class_no"/> 
+		<result property="className" column="class_name"/> 
+		<result property="instituteId" column="institute_id"/> 
+		<result property="year" column="year"/> 
+		<result property="term" column="term"/> 
+		<result property="week" column="week"/> 
+		<result property="time" column="time"/> 
+	</resultMap>
+	
+	<insert id="addCourseForClass" parameterType="com.ocean.dao.ScheduleDao">
+		insert into schedule
+		(
+			id,
+			course_no,
+			course_name,
+			teacher_no,
+			teacher_name,
+			class_no,
+			class_name,
+			institute_id,
+			year,
+			term,
+			week,
+			time
+		)
+		values
+		(
+			#{id},
+			#{courseNo},
+			#{courseName},
+			#{teacherNo},
+			#{teacherName},
+			#{classNo},
+			#{className},
+			#{instituteId},
+			#{year},
+			#{term},
+			#{week},
+			#{time}
+		)
+	</insert>
+	
+	<select id="getScheduleInClass" parameterType="map" resultMap="schedule">
+		select *
+		from schedule
+		where class_no=#{classNo}
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getCTotal" parameterType="map" resultType="int">
+		select count(*)
+		from schedule
+		where class_no=#{classNo}
+	</select>
+	
+	<select id="getScheduleInInstitute" parameterType="map" resultMap="schedule">
+		select *
+		from schedule
+		<trim prefix="where" prefixOverrides="and |or ">
+			institute_id=#{instituteId}
+			<if test="keyword != null and keyword != ''">
+				and (
+					year like '%${keyword}%'
+					or term like '%${keyword}%'
+					or week like '%${keyword}%'
+					or time like '%${keyword}%'
+				)
+			</if>
+			<if test="courseId != null and courseId != ''">
+				and course_no=#{courseId}
+			</if>
+			<if test="classNo != null and classNo != ''">
+				and class_no=#{classNo}
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getITotal" parameterType="map" resultType="int">
+		select count(*)
+		from schedule
+		where institute_id=#{instituteId}
+	</select>
+	
+	<update id="updateCourseForClass" parameterType="com.ocean.model.Schedule">
+		update schedule
+		set
+			teacher_no=#{teacherNo},
+			course_no=#{courseNo},
+			course_name=#{courseName},
+			year=#{year},
+			term=#{term},
+			week=#{week},
+			time=#{time}
+		where id=#{id}
+	</update>
+	<delete id="deleteSchedule" parameterType="string">
+		delete from schedule
+		where id=#{id}
+	</delete>
+	
+	<select id="getScheduleByClass" parameterType="string" resultMap="schedule">
+		select *
+		from schedule
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="year != null and year != ''">
+				year=#{year}
+			</if>
+			<if test="term != null and term != ''">
+				and term=#{term}
+			</if>
+			<if test="classNo != null and classNo != ''">
+				and class_no=#{classNo}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getScheduleByTeacherId" parameterType="string" resultMap="schedule">
+		select *
+		from schedule
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="year != null and year != ''">
+				year=#{year}
+			</if>
+			<if test="term != null and term != ''">
+				and term=#{term}
+			</if>
+			<if test="teacherId != null and teacherId != ''">
+				and teacher_no=#{teacherId}
+			</if>
+		</trim>
+	</select>
+</mapper>

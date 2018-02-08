@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        if(!document.referrer.match("login.html")){
+            window.location.href="login.html";
+        }
+    </script>
+    <title>首页</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/index.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body>
+<div class="head">
+    <nav class="navbar navbar-default navbar-static-top active" role="navigation" id="head-nav">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">
+                智慧校园客户端
+            </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-left">
+            <li><a href="">总览</a></li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right in" style="margin-right: 20px;">
+            <li>
+                <span>欢迎</span>
+                <a id="user" class="active">admin</a>
+            </li>
+            <li>
+                <a class="changePw active">
+                    <i class="fa fa-unlock-alt fa-lg"></i>
+                    <span>修改密码</span>
+                </a>
+            </li>
+            <li>
+                <a class="loginout active">
+                    <i class="fa fa-power-off fa-lg"></i>
+                    <span>退出</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <h1>肇庆学院师生信息查询</h1>
+    <div class="user">
+        <h1>用户名</h1>
+        <i class="icon-tuichu"></i>
+    </div>
+</div>
+<div class="content">
+    <div class="leftNav">
+        <ul>
+
+            <li class="on"><a target="iframeName" href="teacher.html"><i class="fa fa-user"></i>教师信息</a></li>
+            <li><a target="iframeName" href="academy.html"><i class="fa fa-user"></i>学生信息</a></li>
+            <!--<li><a target="iframeName" href=""><i class="fa fa-money"></i>成绩</a></li>-->
+            <li><a target="iframeName" href="organization.html"><i class="fa fa-credit-card"></i>机构信息</a></li>
+            <li><a target="iframeName" href="schecle.html"><i class="fa fa-briefcase"></i>课程表</a></li>
+            <li><a target="iframeName" href="news.html"><i class="fa fa-tasks"></i>消息</a></li>
+            <li><a target="iframeName" href="service.html"><i class="fa fa-tasks"></i>服务信息</a></li>
+        </ul>
+    </div>
+    <div class="rightCon">
+        <iframe src="teacher.html" name="iframeName"></iframe>
+    </div>
+</div>
+<div class="conNews">
+    <div class="head">
+        <h1>修改密码</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>原始密码：<input type="password" id="oldPassword"></li>
+        <li>新密码：<input type="password" id="newPassword"></li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="bg"></div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $(".nav > li > a#user").text(ReadCookie("account"));
+
+    $(".content .leftNav ul li").unbind("click").on("click",function () {
+        $(this).addClass("on").siblings().removeClass("on");
+    })
+    //退出
+    $(".loginout.active").unbind("click").on("click",function () {
+        if(confirm("确定要退出吗？")) {
+            var sendData = {
+                "account": ReadCookie("account"),
+                "code": ReadCookie("code"),
+            };
+            $.ajax({
+                url: "/client/logOut",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(sendData),
+                success: function (json) {
+                    if (json.result == "success") {
+                        alert("退出成功");
+                        window.location.href="login.html";
+                    }else if(json.result == "noPower"){
+                        alert("你没有权限");
+                    }else if(json.result == "timeOver"){
+                        alert("登录过期");
+                        window.location.href="login.html";
+                    }
+                },
+                error: function () {
+                    alert("数据加载出错", 1);
+                }
+            });
+        };
+    });
+
+    //修改密码
+    $(".changePw.active").unbind("click").on("click",function() {
+        $(".conNews").fadeIn();
+        $(".bg").css("height", $(document).height()).fadeIn();
+        $("#oldPassword").val("");
+        $("#newPassword").val("");
+
+        //确定
+        $(".btns3 a.sure3").unbind("click").on("click",function (){
+            var sendData = {
+                "account": ReadCookie("account"),
+                "code": ReadCookie("code"),
+                "oldPassword": $("#oldPassword").val(),
+                "newPassword": $("#newPassword").val(),
+            }
+            $.ajax({
+                url: "/client/updatePassword",
+                type: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(sendData),
+                success: function (json) {
+                    if (json.result == "success") {
+                        alert("修改成功");
+                        $(".conNews").fadeOut();
+                        $(".bg").fadeOut();
+                    }else if(json.result == "the old password is error"){
+                        alert("原始密码错误");
+                    }
+                }
+            })
+        });
+
+        //取消
+        $(".btns3 a.clooe3,.conNews .head i").unbind("click").on("click",function () {
+            $(".conNews").fadeOut();
+            $(".bg").fadeOut();
+        });
+    });
+
+    if(ReadCookie("role")=="teacher"){
+        $(".leftNav ul li").eq(1).css("display","none");
+    }else if(ReadCookie("role")=="student"){
+        $(".leftNav ul li").eq(1).css("display","block");
+    }
+
+
+    //取account code
+    function ReadCookie(cookieName) {
+        var theCookie = "" + document.cookie;
+        var ind = theCookie.indexOf(cookieName);
+        if(ind==-1 || cookieName=="")  return "";
+        var ind1 = theCookie.indexOf(';',ind);
+        if(ind1==-1) ind1  =  theCookie.length;
+        /*读取Cookie值*/
+        return unescape(theCookie.substring(ind+cookieName.length+1,ind1));
+    }
+</script>
+</body>
+</html>

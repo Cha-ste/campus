@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教师</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+
+<div class="academy">
+    <div class="middle">
+        <span style="margin-left: 15px">肇庆学院</span>
+    </div>
+    <div class="content">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+<div class="academyCon">
+    <div class="head">
+        <h1>计算机学院</h1>
+        <button class="btn btn-danger addAdmin">添加教师</button>
+        <button class="btn btn-danger deleteAdmin">批量删除</button>
+        <button class="btn btn-danger lead">导入</button>
+        <button class="btn btn-danger derive">导出</button>
+        <button class="btn btn-danger freeze">禁用</button>
+        <button class="btn btn-danger unfreeze">解禁</button>
+
+
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="教工号/姓名/电话">
+        <select id="select" style="float: right">
+            <option value="">全部</option>
+            <option value="1">教授</option>
+            <option value="2">副教授</option>
+            <option value="3">博士</option>
+            <option value="4">硕士</option>
+            <option value="5">研究生</option>
+            <option value="6">学士</option>
+        </select>
+
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th></th>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>头像</th>
+            <th>教工号</th>
+            <th>手机号</th>
+            <th>邮箱</th>
+            <th>职称</th>
+            <th>操作</th>
+
+        </tr>
+        </thead>
+        <tbody id="teacher">
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>1</td>
+            <td>胡旦旦</td>
+            <td>201224131110</td>
+            <td>13415791563</td>
+            <td>1357899044@qq.com</td>
+            <td>教授</td>
+            <td>
+                <a>修改</a>
+                <a>删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <span style="margin: 2%;color: #e60000;">灰色区域为禁用的教师</span>
+    <!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+<div class="conNews">
+    <div class="head">
+        <h1>添加教师</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>
+            <form  action ="/teacher/uploadTeacherPic" id="upForm" method="post" enctype="multipart/form-data">
+                <div class="info-img">
+                    <input type="file" onchange="previewImage(this)" name="file" id="file" class="uploadImg" style="display:none"/>
+                    <a id="upload-img" class="btn btn-primary">上传头像</a>
+                    <div id="preview" class="UpImg">
+                        <img id="imghead" src='image/logo.png'>
+                    </div>
+                    <input type="submit" class="uploadimage btn btn-primary" value="上传">
+                    <input type="text" name="account" style="display: none">
+                    <input type="text" name="code" style="display: none">
+                    <input type="text" name="groupId" style="display: none">
+                </div>
+            </form>
+        </li>
+        <li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>教&nbsp;&nbsp;工&nbsp;号：<input type="text" id="pubDate" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>手机号码：<input type="text" id="introduction" placeholder="50个字符以内" maxlength="50"/></li>
+        <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" id="password" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>职称：
+            <input type="checkbox" value='1'><sapn>教授</sapn>
+            <input type="checkbox" value='2'><sapn>副教授</sapn>
+            <input type="checkbox" value='3'><sapn>博士</sapn>
+            <input type="checkbox" value='4'><sapn>硕士</sapn>
+            <input type="checkbox" value='5'><sapn>研究生</sapn>
+            <input type="checkbox" value='6'><sapn>学士</sapn>
+        </li>
+        <li><span>简&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;介：</span><textarea></textarea></li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="leadEx">
+    <div class="head">
+        <h1>导入</h1>
+        <i>×</i>
+    </div>
+    <div class="cont">
+        <form id="leadEx" action ="/teacher/importExcel" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="text" name="instituteId" value="" style="display: none">
+            <input type="submit" value="确定导入" class="btn btn-primary sureImport">
+            <input type="text" name="account" value="" style="display: none">
+            <input type="text" name="code" value="" style="display: none">
+            <input type="text" name="groupId" value="" style="display: none">
+        </form>
+
+    </div>
+</div>
+<div class="deriveEx">
+    <div class="head">
+        <h1>导出</h1>
+        <i>×</i>
+    </div>
+    <div class="cont">
+        <input type="radio" name="derive">
+        <span>全部</span>
+
+    </div>
+    <div class="btns3">
+        <a href="#" class="sure4 btn btn-primary">确定导出</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="bg"></div>
+
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/teacher.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<!--form-->
+<script src="js/jquery.form.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.dao.NewsDao">
+	<resultMap type="com.ocean.model.News" id="news">
+		<result property="newsId" column="n_id"/>
+		<result property="newsTitle" column="n_title"/>
+		<result property="newsDate" column="n_date"/>
+		<result property="newsAuthor" column="n_author"/>
+		<result property="newsContent" column="n_content"/>
+		<result property="newsTypeId" column="newsType_id"/>
+		<result property="newsStatus" column="n_status"/>
+		<result property="newsAbstract" column="n_abstract"/>
+	</resultMap>
+	
+	<select id="selectNews" parameterType="map" resultMap="news">
+		select n_id,n_title,n_author,n_date,n_content,n_status,n_abstract
+		from news
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="key != null and key != ''">
+				and (
+					n_title like '%${key}%'
+					or n_author like '%${key}%'
+					or n_abstract like '%${key}%'
+					)
+			</if>
+			<if test="newsStatus != null and newsStatus != ''">
+				and n_status=#{newsStatus}
+			</if>
+			<if test="newsTypeId != null and newsTypeId != ''">
+				and newsType_id=#{newsTypeId}
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="totalRecord" parameterType="map" resultType="int">
+		select count(*) sum
+		from news
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="newsTypeId != null and newsTypeId != ''">
+				and newsType_id=#{newsTypeId}
+			</if>
+			<if test="newsStatus != null and newsStatus != ''">
+				and n_status=#{newsStatus}
+			</if>
+			<if test="key != null and key != ''">
+				and ( 
+					n_title like '%${key}%'
+					or n_author like '%${key}%'
+					or n_abstract like '%${key}%'
+					)
+			</if>
+		</trim>
+	</select>
+	
+	<insert id="saveNews" parameterType="com.ocean.model.News">
+		insert into news
+		(
+			n_id,
+			n_title,
+			n_author,
+			n_date,
+			n_content,
+			newsType_id,
+			n_abstract,
+			n_status
+		)
+		values
+		(
+			#{newsId},
+			#{newsTitle},
+			#{newsAuthor},
+			#{newsDate},
+			#{newsContent},
+			#{newsTypeId},
+			#{newsAbstract},
+			'1'
+		)
+	</insert>
+	
+	<select id="getNews" parameterType="String" resultMap="news">
+		select n_title,n_author,n_abstract,n_content,newsType_id
+		from news
+		where n_id=#{newsId}
+	</select>
+	
+	<update id="updateNews" parameterType="com.ocean.model.News">
+		update news
+		<trim prefix="set" suffixOverrides=",">
+			<if test=" newsTitle != null and newsTitle != '' ">
+				n_title=#{newsTitle},
+			</if>
+			<if test=" newsAuthor != null and newsAuthor != '' ">
+				n_author=#{newsAuthor}, 
+			</if>
+			<if test=" newsContent != null and newsContent != '' ">
+				n_content=#{newsContent}, 
+			</if>
+			<if test=" newsAbstract != null and newsAbstract != '' ">
+				n_abstract=#{newsAbstract}, 
+			</if>
+			<if test=" newsDate != null and newsDate != '' ">
+				n_date=#{newsDate}, 
+			</if>
+			<if test=" newsTypeId != null and newsTypeId != '' ">
+				newsType_id=#{newsTypeId}
+			</if>
+		</trim>
+		where n_id=#{newsId}
+			
+	</update>
+	
+	<update id="publicNews" parameterType="string">
+		update news
+		set n_status='0'
+		where n_id=#{newsId}
+	</update>
+	
+	<update id="unPublicNews" parameterType="string">
+		update news
+		set n_status='1'
+		where n_id=#{newsId}
+	</update>
+	
+	<delete id="deleteNews" parameterType="string" >
+		delete
+		from news
+		where n_id=#{newsId}
+	</delete>
+	
+	<!--客户端-->
+	<select id="selectClientNews" parameterType="map" resultMap="news">
+		select n_id,n_title,n_author,n_date,n_content,n_abstract,newsType_id
+		from news
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="key != null and key != ''">
+				and (
+					n_title like '%${key}%'
+					or n_author like '%${key}%'
+					or n_abstract like '%${key}%'
+					)
+			</if>
+			<if test="newsTypeId != null and newsTypeId != ''">
+				and newsType_id=#{newsTypeId}
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getTotalRecord" parameterType="map" resultType="int">
+		select count(*) sum
+		from news
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="newsTypeId != null and newsTypeId != ''">
+				and newsType_id=#{newsTypeId}
+			</if>
+			<if test="key != null and key != ''">
+				and ( 
+					n_title like '%${key}%'
+					or n_author like '%${key}%'
+					or n_abstract like '%${key}%'
+					)
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getClientNews" parameterType="String" resultMap="news">
+		select n_id,n_title,n_author,n_date,n_content,n_abstract,newsType_id
+		from news
+		where n_id=#{newsId}
+	</select>
+	
+</mapper>

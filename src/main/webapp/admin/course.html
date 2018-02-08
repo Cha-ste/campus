@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .conNews ul li,.conNewsAmend ul li{
+            text-align: left;
+        }
+        .teacherCou{
+            max-height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            border: 1px solid #e3e9ff;
+            box-shadow: 1px 1px 10px #e3e9ff;
+        }
+        .teacherCou table thead tr{
+            background: #ebefff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="academy">
+    <div class="middle">
+        <span style="margin-left: 15px">肇庆学院</span>
+    </div>
+    <div class="content">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+<div class="academyCon">
+    <div class="head">
+        <h1>计算机学院</h1>
+        <button class="btn btn-danger addAdmin">添加课程</button>
+        <button class="btn btn-danger deleteAdmin">批量删除课程</button>
+        <button class="btn btn-danger addTeacher">添加教师</button>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="课程名">
+
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th></th>
+            <th>序号</th>
+            <th>课程名称</th>
+            <th>任课教师</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="teacher">
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+    <!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+<div class="conNews">
+    <div class="head">
+        <h1>添加任课教师</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>
+            选择课程名称：
+            <select id="selectCourse">
+                <option>高等数学</option>
+            </select>
+        </li>
+        <li>
+            选择任课教师:
+        </li>
+        <li>
+            <div class="teacherCou">
+                <table class="table table-no-bordered">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>教工号</th>
+                        <th>教师名称</th>
+                    </tr>
+                    </thead>
+                    <tbody id="teacherCourse">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="conNewsAmend">
+    <div class="head">
+        <h1>修改课程及任课教师</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>
+            课程名称：<input type="text" id="courseName">
+        </li>
+        <li>
+            选择任课教师:(灰色为已添加的教师)
+        </li>
+        <li>
+            <div class="teacherCou">
+                <table class="table table-no-bordered">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>教工号</th>
+                        <th>教师名称</th>
+                    </tr>
+                    </thead>
+                    <tbody id="teacherCourseAmend">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="addconNews">
+    <div class="head">
+        <h1>添加课程</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li><span>课程名：</span><input type="text" placeholder="20个字符以内" maxlength="20"/></li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sureAdd btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="bg"></div>
+
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/course.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<!--form-->
+<script src="js/jquery.form.js"></script>
+</body>
+</html>

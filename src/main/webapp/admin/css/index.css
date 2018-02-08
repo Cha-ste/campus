@@ -1,0 +1,91 @@
+body{
+    width: 100%;
+    height: 100%;
+}
+@font-face {font-family: "iconfont";
+    src: url('../font/iconfont.eot?t=1488770552923'); /* IE9*/
+    src: url('../font/iconfont.eot?t=1488770552923#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/iconfont.woff?t=1488770552923') format('woff'), /* chrome, firefox */
+    url('../font/iconfont.ttf?t=1488770552923') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../font/iconfont.svg?t=1488770552923#iconfont') format('svg'); /* iOS 4.1- */
+}
+.head{
+    width: 100%;
+    height: 60px;
+    background-color: #0f2546;
+}
+.head h1{
+    display: inline-block;
+    margin: 0px;
+    color: #fff;
+    font-size: 21px;
+    line-height: 60px;
+    padding-left: 20px;
+}
+.head .user{
+    float: right;
+    margin-right: 20px;
+}
+.head .user h1{
+    font-size: 16px;
+}
+.head .user i{
+    font-family: "iconfont" !important;
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    top: 1px;
+    /* right: 29px; */
+    color: #ffffff;
+    margin: 10px;
+}
+.icon-tuichu:before { content: "\e654"; }
+.content{
+    width: 100%;
+    height: 100%;
+}
+.content .leftNav{
+    width: 100%;
+    background: #1887ca;
+    z-index: 1;
+}
+.content .rightCon{
+    /*padding-left: 200px;*/
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+.content .rightCon iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.leftNav ul {
+    margin-bottom: 0px;
+}
+.content .leftNav ul li{
+    cursor: pointer;
+    display: inline-block;
+}
+.content .leftNav ul li a{
+    color: #cbcbcb;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 10px 20px;
+}
+.content .leftNav ul li.on{
+    background: #0862a2 !important;
+}
+.content .leftNav ul li.on a{
+    color: #fff;
+}
+.content .leftNav ul li:hover{
+    background: #454f64;
+    cursor: pointer;
+}

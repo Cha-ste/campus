@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日志</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<div class="logCon">
+    <div class="head">
+        <h1>操作日志</h1>
+        <select id="selectAdmin">
+            <option value="">全部</option>
+            <option value="1">管理员1</option>
+            <option value="2">管理员1</option>
+            <option value="3">管理员1</option>
+        </select>
+        <select id="selectFunction">
+            <option value="">全部</option>
+            <option value="1">学生信息编辑</option>
+            <option value="2">教师信息编辑</option>
+            <option value="4">成绩录入</option>
+            <option value="5">机构管理</option>
+            <option value="6">学生课程表</option>
+            <option value="7">教师课程表</option>
+            <option value="8">消息编辑</option>
+            <option value="9">服务管理</option>
+        </select>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="操作内容">
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>管理员名称</th>
+            <th>操作内容</th>
+            <th>时间</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>胡旦旦</td>
+            <td>修改学生</td>
+            <td>2017-2-17 5:00</td>
+        </tr>
+        </tbody>
+    </table>
+    <!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/log.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+</body>
+</html>

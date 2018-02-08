@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/news.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+    <!--分页样式-->
+</head>
+<body>
+<div class="detailsPage">
+    <div class="head-back">
+        <a href="news.html">
+        <i><</i>
+        <span>返回</span>
+        </a>
+    </div>
+    <div class="baseHead">
+        <ul class="list-inline" style="margin: 0px">
+            <li>
+                <span id="title" class="titleMessage">-</span>
+            </li>
+            <li>
+                <span>发布时间：</span><span id="createTime">-</span>
+            </li>
+            <li>
+                <span>消息类型：</span><span id="createState">-</span>
+            </li>
+            <li>
+                <span>作者：</span><span id="validTime">-</span>
+            </li>
+        </ul>
+    </div>
+    <div class="messContent">
+
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $(function () {
+
+        getInfo();
+
+    });
+
+    function getInfo() {
+        var	id = $.getUrlParam("id");
+        var sendData = {
+            "account": ReadCookie("account"),
+            "code": ReadCookie("code"),
+            "newsId": id,
+
+        };
+        $.ajax({
+            url: "/client/getNews",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify(sendData),
+            contentType: "application/json",
+            success: function(res) {
+                if(res.news.newsTypeId==1){
+                    res.news.newsTypeId="新闻";
+                }else if(res.news.newsTypeId==2){
+                    res.news.newsTypeId="招聘会";
+                }else if(res.news.newsTypeId==3){
+                    res.news.newsTypeId="学术讲座";
+                }
+                $("#title").text(res.news.newsTitle);
+                $("#createTime").text(res.news.newsDate);
+                $("#createState").text(res.news.newsTypeId);
+                $("#validTime").text(res.news.newsAuthor);
+                $(".messContent").html(res.news.newsContent);
+
+            }
+
+        });
+    }
+
+    //取account code
+    function ReadCookie(cookieName) {
+        var theCookie = "" + document.cookie;
+        var ind = theCookie.indexOf(cookieName);
+        if(ind==-1 || cookieName=="")  return "";
+        var ind1 = theCookie.indexOf(';',ind);
+        if(ind1==-1) ind1  =  theCookie.length;
+        /*读取Cookie值*/
+        return unescape(theCookie.substring(ind+cookieName.length+1,ind1));
+    }
+
+    $.getUrlParam = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return  decodeURI(r[2]); return null;
+    }
+</script>
+</body>
+</html>

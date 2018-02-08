@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.dao.OrganizerDao">
+	<resultMap type="com.ocean.model.Organizer" id="organizer"/>
+	
+	<insert id="addOrganizer" parameterType="com.ocean.model.Organizer">
+		insert into organizer
+		(
+			id,
+			organization_id,
+			name,
+			tell,
+			email
+		)
+		values(
+			#{id},
+			#{organizationId},
+			#{name},
+			#{tell},
+			#{email}
+		)
+	</insert>
+	
+	<delete id="deleteOrganizer" parameterType="string">
+		delete from organizer
+		where id=#{id}
+	</delete>
+	
+	<update id="updateOrganizer" parameterType="com.ocean.model.Organizer">
+		update organizer
+		set
+			organization_id=#{organizationId},
+			name=#{name},
+			tell=#{tell},
+			email=#{email}
+		where id=#{id}
+	</update>
+	
+	<select id="selectOrganizer" parameterType="map" resultMap="organizer">
+		select *
+		from organizer
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="organizationId != null and organizationId !=''">
+				organization_id=#{organizationId}
+			</if>
+			<if test="keyword != null and keyword !=''">
+				and (
+						name like '%${keyword}%'
+						or tell like '%${keyword}%'
+						or email like '%${keyword}%'
+				)
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getTotalRecord" parameterType="map" resultType="int">
+		select count(*) as total 
+		from organizer
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="organizationId != null and organizationId != ''">
+				organization_id=#{organizationId}
+			</if>
+			<if test="keyword != null and keyword != ''">
+				and (
+					name like '%${keyword}%'
+					or tell like '%${keyword}%'
+					or email like '%${keyword}%'
+				)
+			</if>
+		</trim>
+	</select>
+	<select id="getOrganizer" parameterType="String" resultMap="organizer">
+		select *
+		from organizer
+		where id=#{id}
+	</select>
+</mapper>

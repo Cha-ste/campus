@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>服务</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/news.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<div class="company_sign">
+    <div class="head">
+        <h3>学校服务</h3>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="名称/电话/地址">
+
+    </div>
+    <div class="news">
+        <table  class="table table-bordered">
+            <thead>
+            <tr>
+                <th>服务名称</th>
+                <th>服务电话</th>
+                <th>服务地址</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="messageMy">
+
+            </tbody>
+        </table>
+        <button class="addnews btn btn-primary">添加</button>
+        <!--页码-->
+        <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+    </div>
+    <div class="conNews">
+        <div class="head">
+            <h1>添加学校服务</h1>
+            <i>×</i>
+        </div>
+        <ul class="companyNews">
+            <li>1.服务名称：<input type="text"/></li>
+            <li>2.服务电话：<input type="text" id="pubDate"/></li>
+            <li>3.服务地址：<input type="text" id="introduction"/></li>
+        </ul>
+        <div class="btns3">
+            <a href="#" class="sure3 btn btn-primary">确定</a>
+            <a href="#" class="clooe3 btn btn-default">取消</a>
+        </div>
+    </div>
+    <div class="bg"></div>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/service.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+</body>
+</html>

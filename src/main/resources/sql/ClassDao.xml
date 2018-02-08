@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.dao.ClassDao">
+	<resultMap id="clazz" type="com.ocean.model.Clazz">
+		<result property="classNo" column="c_no"/>
+		<result property="className" column="c_name"/>
+		<result property="pNo" column="p_no"/>
+		<result property="instituteNo" column="institute_no"/>
+	</resultMap>
+	
+	<insert id="addClass" parameterType="com.ocean.model.Clazz">
+		insert into class
+		(
+			c_no,
+			c_name,
+			p_no,
+			i_no
+		)
+		values
+		(
+			#{classNo},
+			#{className},
+			#{pNo},
+			#{instituteNo}
+		)
+	</insert>
+	
+	<select id="getClass" parameterType="string" resultMap="clazz">
+		select *
+		from class
+		where c_no=#{classNo}
+	</select>
+	
+	<update id="updateClass" parameterType="com.ocean.model.Clazz">
+		update class
+		set
+			c_name=#{className}
+		where c_no=#{classNo}
+	</update>
+	
+	<delete id="deleteClass" parameterType="string">
+		delete from class
+		where c_no=#{classNo}
+	</delete>
+	
+	<select id="selectClass" parameterType="string" resultMap="clazz">
+		select *
+		from class
+		<trim prefix="where" prefixOverrides="or ">
+			<if test="instituteId != null and instituteId != '' ">
+				i_no=#{instituteId}
+			</if>
+			<if test="keyword != null and keyword != '' ">
+				c_name like '%${className}%'
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getClassBypId" parameterType="string" resultMap="clazz">
+		select c_no,c_name
+		from class
+		where p_no=#{pId}
+	</select>
+	
+</mapper>

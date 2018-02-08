@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.dao.ServerDao">
+	<resultMap type="com.ocean.model.Server" id="server">
+		<result property="serverId" column="server_id"/>
+		<result property="serverAddress" column="server_address"/>
+		<result property="serverTell" column="server_tell"/>
+		<result property="serverName" column="server_name"/>
+	</resultMap>
+	
+	<select id="selectServer" parameterType="map" resultMap="server">
+		select server_id,server_name,server_tell,server_address
+		from server
+		<trim prefix="where" prefixOverrides="or ">
+			<if test="key != null and key != '' ">
+				server_name like '%${key}%'
+				or server_address like '%${key}%'
+				or server_tell like '%${key}%'
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="selectClientServer" parameterType="map" resultMap="server">
+		select server_id,server_name,server_tell,server_address
+		from server
+		<trim prefix="where" prefixOverrides="or ">
+			<if test="key != null and key != '' ">
+				server_name like '%${key}%'
+				or server_address like '%${key}%'
+				or server_tell like '%${key}%'
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getTotalRecord" parameterType="map" resultType="int">
+		select count(*) sum
+		from server
+		<trim prefix="where" prefixOverrides="or ">
+			<if test="key != null and key != '' ">
+				server_name like '%${key}%'
+				or server_address like '%${key}%'
+				or server_tell like '%${key}%'
+			</if>
+		</trim>
+	</select>
+	
+	<select id="getServer" parameterType="string" resultMap="server">
+		select server_name,server_address,server_tell
+		from server
+		where server_id=#{serverId}
+	</select>
+	
+	<insert id="addServer" parameterType="com.ocean.model.Server">
+		insert into server
+		(
+			server_id,
+			server_name,
+			server_tell,
+			server_address
+		)
+		values
+		(
+			#{serverId},
+			#{serverName},
+			#{serverTell},
+			#{serverAddress}
+		)
+	</insert>
+	
+	<update id="updateServer" parameterType="com.ocean.model.Server">
+		update server
+		<trim prefix="set" prefixOverrides=",">
+			<if test="serverName != null and serverName != '' ">
+				server_name=#{serverName}
+			</if>
+			<if test="serverTell != null and serverTell != '' ">
+				,server_tell=#{serverTell}
+			</if>
+			<if test="serverAddress != null and serverAddress != '' ">
+				,server_address=#{serverAddress}
+			</if>
+		</trim>
+		where server_id=#{serverId}
+	</update>
+	
+	<delete id="deleteServer" parameterType="string">
+		delete from server
+		where server_id=#{serverId}
+	</delete>
+</mapper>

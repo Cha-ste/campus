@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.dao.TeacherDao">
+	<resultMap type="com.ocean.model.Teacher" id="teacher">
+		<result property="id" column="id"/>
+		<result property="teacherNo" column="t_no"/>
+		<result property="teacherName" column="t_name"/>
+		<result property="teacherMail" column="t_mail"/>
+		<result property="teacherTell" column="t_tell"/>
+		<result property="teacherDegree" column="t_degree"/>
+		<result property="expression" column="t_expression"/>
+		<result property="teacherPicture" column="t_picture"/>
+		<result property="password" column = "password"/>
+		<result property="instituteNo" column="institute_no"/>
+	</resultMap>
+	
+	<resultMap type="com.ocean.pojo.TeacherInfo" id="teacherInfo">
+		<result property="teacherNo" column="t_no"/>
+		<result property="teacherName" column="t_name"/>
+		<result property="teacherMail" column="t_mail"/>
+		<result property="teacherTell" column="t_tell"/>
+		<result property="teacherDegree" column="t_degree"/>
+		<result property="expression" column="t_expression"/>
+		<result property="teacherPicture" column="t_picture"/>
+		<result property="course" column = "cs_name"/>
+		<result property="instituteNo" column="institute_no"/>
+	</resultMap>
+	
+	<insert id="addTeacher" parameterType="com.ocean.model.Teacher">
+		insert into teacher
+		(
+			id,
+			t_no,
+			t_name,
+			t_mail,
+			t_tell,
+			t_degree,
+			t_expression,
+			t_picture,
+			password,
+			institute_no,
+			status
+		)
+		values
+		(
+			#{id},
+			#{teacherNo},
+			#{teacherName},
+			#{teacherMail},
+			#{teacherTell},
+			#{teacherDegree},
+			#{expression},
+			#{teacherPicture},
+			#{teacherNo},
+			#{instituteNo},
+			'1'
+		)
+	</insert>
+	
+	<update id="updateTeacher" parameterType="com.ocean.model.Teacher">
+		update teacher
+		<trim prefix="set" suffixOverrides=",">
+			<if test="teacherName != null and teacherName != '' ">
+				t_name=#{teacherName},
+			</if>
+			<if test="teacherNo != null and teacherNo != '' ">
+				t_no=#{teacherNo},
+			</if>
+			<if test="teacherMail != null and teacherMail != '' ">
+				t_mail=#{teacherMail},
+			</if>
+			<if test="teacherTell != null and teacherTell != '' ">
+				t_tell=#{teacherTell},
+			</if>
+			<if test="teacherDegree != null and teacherDegree != '' ">
+				t_degree=#{teacherDegree},
+			</if>
+			<if test="expression != null and expression != '' ">
+				t_expression=#{expression},
+			</if>
+			<if test="teacherPicture != null and teacherPicture != '' ">
+				t_picture=#{teacherPicture},
+			</if>
+			<if test="password != null and password != '' ">
+				password=#{password},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+	
+	<select id="selectTotalRecord" parameterType="map" resultType="int">
+		select count(*) as total
+		from teacher
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="instituteNo != null and instituteNo != ''">
+				institute_no=#{instituteNo}
+			</if>
+			<if test="key != null and key != ''">
+				and (
+					t_no like '%${key}%'
+					or t_name like '%${key}%'
+					or t_tell like '%${key}%'
+					or t_mail like '%${key}%'
+				)
+			</if>
+			<if test="tDegree != null and tDegree != ''">
+				and t_degree like '%${tDegree}%'
+			</if>
+		</trim>
+	</select>
+	
+	<select id="selectTeacher" parameterType="map" resultMap="teacher">
+		select id,t_no, t_name,t_tell,t_mail,t_degree,t_picture,t_expression,institute_no,status
+		from teacher
+		<trim prefix="where" prefixOverrides="and |or ">
+			<if test="instituteNo != null and instituteNo != ''">
+				institute_no=#{instituteNo}
+			</if>
+			<if test="key != null and key != ''">
+				and (
+					t_no like '%${key}%'
+					or t_name like '%${key}%'
+					or t_tell like '%${key}%'
+					or t_mail like '%${key}%'
+				)
+			</if>
+			<if test="tDegree != null and tDegree != ''">
+				and t_degree like '%${tDegree}%'
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getTeacher" parameterType="string" resultMap="teacher">
+		select id,t_no,t_name,t_tell,t_picture,t_mail,t_degree,t_expression,institute_no
+		from teacher
+		where id=#{id}
+	</select>
+	
+	<delete id="deleteTeacher" parameterType="string">
+		delete from teacher
+		where id=#{teacherId}
+	</delete>
+	
+	<update id="freezeTeacher" parameterType="string">
+		update teacher
+		set status='0'
+		where id=#{teacherId}
+	</update>
+	
+	<update id="unFreezeTeacher" parameterType="string">
+		update teacher
+		set status='1'
+		where id=#{teacherId}
+	</update>
+	
+	<select id="getTeacherByAccount" parameterType="string" resultMap="teacher">
+		select *
+		from teacher
+		where t_no=#{account}
+	</select>
+	
+	<update id="updatePassword" parameterType="map">
+		update teacher
+		set password=#{newPassword}
+		where t_no=#{account}
+	</update>
+	
+	<select id="getTeacherByInstituteId" parameterType="String" resultMap="teacher">
+		select id,t_no,t_name
+		from teacher
+		where institute_no=#{instituteId}
+	</select>
+	
+	<select id="getTeacherByCourseId" parameterType="String" resultMap="teacher">
+		select id,t_no,t_name
+		from teacher
+		where id=#{teacherId}
+	</select>
+	
+	<select id="getTeacherIds" parameterType="String" resultType="string">
+		select teacher_no
+		from course
+		where cs_no=#{courseId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员权限</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<div class="academy">
+   
+    <div class="middle">
+        <span style="margin-left: 15px">肇庆学院</span>
+    </div>
+    <div class="content">
+        <ul>
+               
+        </ul>
+    </div>
+</div>
+<div class="academyCon">
+    <div class="head">
+        <h1>计算机学院</h1>
+        <button class="btn btn-danger addAdmin">添加成员</button>
+        <button class="btn btn-danger deleteAdmin">批量删除</button>
+        <select id="select">
+            <option value="">全部</option>
+            <option value="1">消息编辑</option>
+            <option value="2">师生信息编辑</option>
+            <option value="3">成绩录入</option>
+        </select>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>&nbsp;&nbsp;</th>
+                <th>用户名</th>
+                <th>手机号</th>
+                <th>邮箱</th>
+                <th>密码</th>
+                <th>权限</th>
+                <th>操作</th>
+
+            </tr>
+        </thead>
+        <tbody id="adminPower">
+
+        </tbody>
+    </table>
+</div>
+<div class="conNews">
+    <div class="head">
+        <h1>添加管理员</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input type="text" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>手机号码：<input type="text" id="pubDate" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" id="introduction" placeholder="50个字符以内" maxlength="50"/></li>
+        <li>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="text" id="password" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>选择权限：
+            <input type="checkbox" value='1'><sapn>消息编辑</sapn>
+            <input type="checkbox" value='2'><sapn>师生信息编辑</sapn>
+            <input type="checkbox" value='3'><sapn>成绩录入</sapn>
+        </li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="bg"></div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/adminPower.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+</body>
+</html>

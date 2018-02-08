@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/aop 
+	  http://www.springframework.org/schema/aop/spring-aop.xsd ">
+
+	<!-- aop注解支持 -->
+
+	<!-- 自定义的切面类 -->
+    <!--<bean id="studentAspect" class="com.ocean.util.StudentAspect"/>
+    &lt;!&ndash; xml形式配置切面 &ndash;&gt;
+    <aop:config>
+    	<aop:aspect id="afterAdd" ref="studentAspect">
+            <aop:pointcut 
+            	id="serviceAddPointcut" 
+            	expression="execution(* com.ocean.*.*.add*(..)) and args(Object)"
+            	/>
+            <aop:after method="afterAdd" pointcut-ref="serviceAddPointcut"/>
+        </aop:aspect>
+        <aop:aspect id="afterUpdate" ref="studentAspect">
+            <aop:pointcut id="serviceUpdatePointcut" expression="execution(* com.ocean.*.*.update*(..))"/>
+            <aop:after method="afterUpdate" pointcut-ref="serviceUpdatePointcut"/>
+        </aop:aspect>
+         <aop:aspect id="afterDelete" ref="studentAspect">
+            <aop:pointcut id="serviceDeletePointcut" expression="execution(* com.ocean.*.*.delete*(..))"/>
+            <aop:after method="afterDelete" pointcut-ref="serviceDeletePointcut"/>
+        </aop:aspect>
+    </aop:config>-->
+    
+	<!--引入数据库的配置 -->
+	<context:property-placeholder location="classpath:config/jdbc.properties" />
+	<!--配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${user}" />
+		<property name="password" value="${password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${initialSize}"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="${maxActive}"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="${maxIdle}"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${minIdle}"></property>
+		<!-- 验证连接池取出的连接是否可用 -->
+		<property name="validationQuery" value="${validationQuery}"></property>
+		<!-- testWhileIdle = "true" -->
+		<property name="testWhileIdle" value="true"></property>
+		<!-- timeBetweenEvictionRunsMillis = 3600000 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"></property>
+		<!-- minEvictableIdleTimeMillis = 18000000 -->
+		<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}"></property>
+		<!-- testOnBorrow = "true" -->
+		<property name="testOnBorrow" value="${testOnBorrow}"></property>
+	</bean>
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<!--创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations" value="classpath:sql/*.xml"></property>
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ocean"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="maxInMemorySize" value="10240"></property><!-- 最大内存大小 -->
+		<property name="uploadTempDir" value="/tmp/"></property>
+		<property name="maxUploadSize" value="-1"></property><!-- -1代表没有限制 -->
+	</bean>
+
+</beans>

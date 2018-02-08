@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>机构</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+
+<div class="academy">
+    <div class="middle">
+        <span>肇庆学院</span>
+    </div>
+    <div class="content">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+<div class="academyCon">
+    <div class="head">
+        <h1>校医院</h1>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="标题/作者/摘要">
+    </div>
+    <table class="table table-no-bordered">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>手机号</th>
+            <th>邮箱</th>
+
+        </tr>
+        </thead>
+        <tbody id="teacher">
+
+        </tbody>
+    </table>
+	<!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/organization.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+</body>
+</html>

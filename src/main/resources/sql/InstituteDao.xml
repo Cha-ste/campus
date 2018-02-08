@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.ocean.dao.InstituteDao">
+ 	<resultMap type="com.ocean.model.Institute" id="institute">
+ 		<result property="instituteId" column="i_no"/>
+ 		<result property="instituteName" column="i_name"/>
+ 	</resultMap>
+ 	
+ 	<select id="selectInstitute" parameterType="string" resultMap="institute">
+ 		select *
+ 		from institute
+ 	</select>
+ 	
+ 	<insert id="addInstitute" parameterType="com.ocean.model.Institute">
+ 		insert into institute
+ 		(
+ 			i_no,
+ 			i_name
+ 		)
+ 		values
+ 		(
+ 			#{instituteId},
+ 			#{instituteName}
+ 		)
+ 	</insert>
+ 	
+ 	<update id="updateInstitute" parameterType="com.ocean.model.Institute">
+ 		update institute
+ 		set
+ 		i_name=#{instituteName}
+ 		where i_no=#{instituteId}
+ 	</update>
+ 	
+ 	<delete id="deleteInstitute" parameterType="string">
+ 		delete from institute
+ 		where i_no=#{instituteId}
+ 	</delete>
+ 	
+ </mapper>

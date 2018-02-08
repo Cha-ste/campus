@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩录入</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<div class="academy">
+    <div class="head">
+        <input type="text" placeholder="搜索">
+        <i class="icon-sousuo_sousuo"></i>
+    </div>
+    <div class="middle">
+        <span>肇庆学院</span>
+    </div>
+    <div class="content">
+        <ul>
+            <li>
+                <i class="icon-sanjiao"></i>
+                <p><i class="icon-wenjian"></i><span>校医院</span></p>
+                <i class="icon-caozuo"></i>
+                <div class="dowload">
+                    <span>修改学院</span>
+                    <span>删除</span>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div class="academyCon">
+    <div class="head">
+        <h1>校医院</h1>
+        <button class="btn btn-danger addAdmin">添加成绩</button>
+        <button class="btn btn-danger deleteAdmin">批量删除</button>
+        <button class="btn btn-danger lead">导入</button>
+        <button class="btn btn-danger derive">导出</button>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="标题/作者/摘要">
+        <select id="select" style="float: right">
+            <option value="">全部</option>
+            <option value="1">12科技一班</option>
+            <option value="2">12软件一班</option>
+            <option value="3">13软件一班</option>
+            <option value="4">14软件一班</option>
+            <option value="5">15软件一班</option>
+            <option value="6">16软件一班</option>
+        </select>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th></th>
+            <th>序号</th>
+            <th>课程名称</th>
+            <th>班级</th>
+            <th>姓名</th>
+            <th>学号</th>
+            <th>考试成绩</th>
+            <th>平时成绩</th>
+            <th>总评</th>
+            <th>操作</th>
+
+        </tr>
+        </thead>
+        <tbody id="teacher">
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>1</td>
+            <td>12科技一般</td>
+            <td>胡旦旦</td>
+            <td>201224131110</td>
+            <td>76</td>
+            <td>70</td>
+            <td>73</td>
+            <td>
+                <a>修改</a>
+                <a>删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+<div class="conNews">
+    <div class="head">
+        <h1>添加人员</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>手机号码：<input type="text" id="introduction" placeholder="50个字符以内" maxlength="50"/></li>
+        <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" id="password" placeholder="20个字符以内" maxlength="20"/></li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="addconNews">
+    <div class="head">
+        <h1>添加子机构</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>机构名：<input type="text" placeholder="20个字符以内" maxlength="20"/></li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sureAdd btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="leadEx">
+    <div class="head">
+        <h1>导入</h1>
+        <i>×</i>
+    </div>
+    <div class="cont">
+        <form id="leadEx" action ="/organizer/importExcel" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="text" name="organizationId" value="" style="display: none">
+            <input type="submit" value="确定导入" class="btn btn-primary sureImport">
+            <input type="text" name="account" value="" style="display: none">
+            <input type="text" name="code" value="" style="display: none">
+            <input type="text" name="groupId" value="" style="display: none">
+        </form>
+
+    </div>
+</div>
+<div class="deriveEx">
+    <div class="head">
+        <h1>导出</h1>
+        <i>×</i>
+    </div>
+    <div class="cont">
+        <input type="radio" name="derive">
+        <span>全部</span>
+
+    </div>
+    <div class="btns3">
+        <a href="#" class="sure4 btn btn-primary">确定导出</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="bg"></div>
+<div class="bg"></div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/performance.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程表</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .conNews ul li{
+            text-align: center;
+        }
+        .teacherCou{
+            max-height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            border: 1px solid #e3e9ff;
+            box-shadow: 1px 1px 10px #e3e9ff;
+        }
+        .teacherCou table thead tr{
+            background: #ebefff;
+        }
+        #selectClass,#teacherCourse,#selectCourse,#year,#term,#week,#time{
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="academy">
+    <div class="middle">
+        <span>肇庆学院</span>
+    </div>
+    <div class="content">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+<div class="academyCon">
+    <div class="head">
+        <h1>计算机学院</h1>
+        <button class="btn btn-danger deleteAdmin">批量删除课程</button>
+        <button class="btn btn-danger addTeacher">添加课程</button>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="年份/学期/时间">
+        <select class="newsType" style="float: right;margin-right: 10px">
+            <option value="">全部班级</option>
+        </select>
+        <select class="newsState" style="float: right;margin-right: 10px">
+            <option value="">全部课程</option>
+        </select>
+
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th></th>
+            <th>序号</th>
+            <th>班级</th>
+            <th>课程</th>
+            <th>教师</th>
+            <th>学年</th>
+            <th>学期</th>
+            <th>星期</th>
+            <th>时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="teacher">
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+    <!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+<div class="conNews">
+    <div class="head">
+        <h1>添加任课教师</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>
+            选择班级：
+            <select id="selectClass">
+                <option>高等数学</option>
+            </select>
+        </li>
+        <li>
+            选择课程：
+            <select id="selectCourse">
+                <option>高等数学</option>
+            </select>
+        </li>
+        <li>
+            选择教师：
+            <select id="teacherCourse"></select>
+        </li>
+        <li>
+            选择学年：
+            <select id="year">
+                <option>2012-2013</option>
+                <option>2013-2014</option>
+                <option>2014-2015</option>
+                <option>2015-2016</option>
+                <option>2016-2017</option>
+                <option>2017-2018</option>
+            </select>
+        </li>
+        <li>
+            选择学期：
+            <select id="term">
+                <option>上学期</option>
+                <option>下学期</option>
+            </select>
+        </li>
+        <li>
+            选择星期：
+            <select id="week">
+                <option>星期一</option>
+                <option>星期二</option>
+                <option>星期三</option>
+                <option>星期四</option>
+                <option>星期五</option>
+                <option>星期六</option>
+                <option>星期日</option>
+
+            </select>
+        </li>
+        <li>
+            选择时间：
+            <select id="time">
+                <option>1-2节</option>
+                <option>3-4节</option>
+                <option>5-6节</option>
+                <option>7-8节</option>
+            </select>
+        </li>
+
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="conNewsAmend">
+    <div class="head">
+        <h1>修改课程及任课教师</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>
+            课程名称：<input type="text" id="courseName">
+        </li>
+        <li>
+            选择任课教师:(灰色为已添加的教师)
+        </li>
+        <li>
+            <div class="teacherCou">
+                <table class="table table-no-bordered">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>教工号</th>
+                        <th>教师名称</th>
+                    </tr>
+                    </thead>
+                    <tbody id="teacherCourseAmend">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>203847774</td>
+                        <td>胡旦旦</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="bg"></div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<script type="text/javascript" src="js/courseScale.js"></script>
+</body>
+</html>

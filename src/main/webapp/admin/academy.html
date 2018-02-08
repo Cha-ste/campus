@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学院</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+<div class="academy">
+    <!--<div class="head">-->
+        <!--<input type="text" placeholder="搜索">-->
+        <!--<i class="icon-sousuo_sousuo"></i>-->
+    <!--</div>-->
+    <div class="middle">
+        <span>肇庆学院</span>
+        <i class="icon-caozuo"></i>
+        <div class="dowload">
+            <span>添加学院</span>
+        </div>
+    </div>
+    <div class="content">
+        <ul>
+        </ul>
+
+    </div>
+</div>
+<div class="academyCon">
+    <div class="head">
+        <h1>计算机学院</h1>
+        <button class="btn btn-danger addAdmin">添加学生</button>
+        <button class="btn btn-danger deleteAdmin">批量删除</button>
+        <button class="btn btn-danger lead">导入</button>
+        <button class="btn btn-danger derive">导出</button>
+        <button class="btn btn-danger freeze">禁用</button>
+        <button class="btn btn-danger unfreeze">解禁</button>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="班级/姓名">
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>序号</th>
+                <th>专业</th>
+                <th>班级</th>
+                <th>姓名</th>
+                <th>学号</th>
+                <th>手机号</th>
+                <th>邮箱</th>
+                <th>操作</th>
+
+            </tr>
+        </thead>
+        <tbody id="adminPower">
+
+        </tbody>
+    </table>
+    <span style="margin: 2%;color: #e60000;">灰色区域为禁用的学生</span>
+    <!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+<div class="conNews">
+    <div class="head">
+        <h1>添加学生</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li>
+            <form  action ="/student/uploadStudentPic" id="upForm" method="post" enctype="multipart/form-data">
+                <div class="info-img">
+                    <input type="file" onchange="previewImage(this)" name="file" id="file" class="uploadImg" style="display:none"/>
+                    <a id="upload-img" class="btn btn-primary">上传头像</a>
+                    <div id="preview" class="UpImg">
+                        <img id="imghead" src='image/logo.png'>
+                    </div>
+                    <input type="submit" class="uploadimage btn btn-primary" value="上传">
+                    <input type="text" name="account" style="display: none">
+                    <input type="text" name="code" style="display: none">
+                    <input type="text" name="groupId" style="display: none">
+                </div>
+            </form>
+        </li>
+        <li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" id="pubDate" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
+            <input type="radio" name="sex" value="0" style="width: 13px;margin: 0px 10px;position: relative;top: 11px;"><i>男</i>
+            <input type="radio" name="sex" value="0" style="width: 13px;margin: 0px 10px;position: relative;top: 11px;"><i>女</i>
+        </li>
+        <li>手机号码：<input type="text" id="introduction" placeholder="50个字符以内" maxlength="50"/></li>
+        <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" id="password" placeholder="20个字符以内" maxlength="20"/></li>
+        <li>选择专业
+            <select id="profession">
+
+            </select>
+        </li>
+        <li>
+            选择班级
+            <select id="classNo">
+
+            </select>
+        </li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="addconNews">
+    <div class="head">
+        <h1>添加学院</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li><span>学院名：</span><input type="text" placeholder="20个字符以内" maxlength="20"/></li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sureAdd btn btn-primary">确定</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="leadEx">
+    <div class="head">
+        <h1>导入</h1>
+        <i>×</i>
+    </div>
+    <div class="cont">
+        <form id="leadEx" action ="/student/importExcel" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="text" name="instituteId" style="display: none">
+            <input type="submit" value="确定导入" class="btn btn-primary sureImport">
+            <input type="text" name="account" style="display: none">
+            <input type="text" name="code" style="display: none">
+            <input type="text" name="groupId" style="display: none">
+            <input type="text" name="pId" style="display: none">
+            <input type="text" name="classNo" style="display: none">
+        </form>
+
+    </div>
+</div>
+<div class="deriveEx">
+    <div class="head">
+        <h1>导出</h1>
+        <i>×</i>
+    </div>
+    <div class="cont">
+        <input type="radio" name="derive">
+        <span>全部</span>
+
+    </div>
+    <div class="btns3">
+        <a href="#" class="sure4 btn btn-primary">确定导出</a>
+        <a href="#" class="clooe3 btn btn-default">取消</a>
+    </div>
+</div>
+<div class="conNewsDetail">
+	<div class="head">
+        <h1>导出</h1>
+        <i>×</i>
+    </div>
+    <ul>
+    
+    </ul>
+    <div class="btns3">
+        <a href="#" class="sure3 btn btn-primary">确定</a>
+       
+    </div>
+</div>
+<div class="bg"></div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/academy.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<!--form-->
+<script src="js/jquery.form.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学院</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--自定义-->
+    <link rel="stylesheet" href="css/academy.css">
+    <!--分页样式-->
+    <link rel="stylesheet" href="css/pagination.css">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .academyCon{
+            padding-left: 0px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="academyCon">
+    <div class="head">
+        <h1>--</h1>
+        <button class="btn btn-primary search-btn">搜索</button>
+        <input type="text" class="search-text" placeholder="学号/姓名/电话/邮箱">
+    </div>
+    <ul class="picContent">
+
+    </ul>
+    <!--页码-->
+    <div id="Pagination" class="M-box"><!-- 这里显示分页 --></div>
+</div>
+
+<div class="conNews">
+    <div class="head">
+        <h1>教师详情</h1>
+        <i>×</i>
+    </div>
+    <ul class="companyNews">
+        <li><img src="./image/default.png" id="imghead"></li>
+        <li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<i></i></li>
+        <li>学&nbsp;&nbsp;工&nbsp;号：<i></i></li>
+        <li>手机号码：<i></i></li>
+        <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：<i></i></li>
+        <li>性别：<i></i></li>
+    </ul>
+    <div class="btns3">
+        <a href="#" class="clooe3 btn btn-primary">返回</a>
+    </div>
+</div>
+<div class="bg"></div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/academy.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<!--form-->
+<script src="js/jquery.form.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+
+
+    <script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui.js"></script>
+
+</head>
+<body>
+<img src="./image/bg3.png" class="img-responsive bg-small" style="position: fixed;margin: 0 auto;">
+<img src="./image/bgcloudy.png" class="img-responsive bg-big" style="position: fixed;margin: 0 auto;">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-lg-offset-2 col-lg-3 col-xs-offset-2 col-xs-4  center">
+            <h1 class="title"><span class="anychat"></span>智慧校园信息查询</h1>
+            <form action="login" method="post" style="position: relative;" class="form-horizontal form-login">
+
+                <div class="input-item">
+                    <input type="hidden" name="action" value="login">
+                    <div class="form-group user-group">
+                        <div class="col-xs-offset-2 col-xs-8 input-group">
+                            <span class="input-group-addon" ><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="用户名" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-8 input-group">
+                            <span class="input-group-addon" ><span class="glyphicon glyphicon-lock"></span></span>
+                            <input id="password" name="password" class="form-control" autocomplete="off" placeholder="用户登录密码" type="password" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-8 input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                            <select id="role" class="form-control">
+                                <option value="student">学生</option>
+                                <option value="teacher">老师</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-8 no-pad">
+                            <button class="btn login-btn" id="login" type="button">登录</button></div>
+                    </div>
+                </div>
+                <div class="opacity"></div>
+
+            </form>
+            <!-- 尾部 -->
+            <div class="reserve">© 2016-2017 </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    function SetCookie(cookieName,cookieValue,nDays) {
+        /*当前日期*/
+        var today = new Date();
+        /*Cookie过期时间*/
+        var expire = new Date();
+        /*如果未设置nDays参数或者nDays为0，取默认值1*/
+        if(nDays == null || nDays == 0) nDays = 1;
+        /*计算Cookie过期时间*/
+        expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+        /*设置Cookie值*/
+        document.cookie = cookieName + "=" + escape(cookieValue)
+            + ";expires=" + expire.toGMTString();
+    }
+    function ReadCookie(cookieName) {
+        var theCookie = "" + document.cookie;
+        var ind = theCookie.indexOf(cookieName);
+        if(ind==-1 || cookieName=="")  return "";
+        var ind1 = theCookie.indexOf(';',ind);
+        if(ind1==-1) ind1  =  theCookie.length;
+        /*读取Cookie值*/
+        return unescape(theCookie.substring(ind+cookieName.length+1,ind1));
+    }
+    function login() {
+        // alert("login button test!");
+        if($("#username").val()==''){
+            alert("请输管理员户账号！");
+            $("#username").focus();
+            return false;
+        }
+        if($("#password").val()==''){
+            alert("请输入管理员密码！");
+            $("#password").focus();
+            return false;
+        }
+        var sendData={
+            "account":$("#username").val(),
+            "password":$("#password").val(),
+            "role":$("#role").val()
+        };
+        $.ajax({
+            url:"/client/login",
+            type:"POST",
+            dataType:"json",
+            timeOut:40,
+            beforeSend:function () {
+                $("#login").prop("disabled",true);
+                $("#login").val("登录中...");
+            },
+            contentType:"application/json",
+            data:JSON.stringify(sendData),
+            success:function(json) {
+                //alert("sss");
+                if(json.result=="success") {
+                    SetCookie("account" ,json.account,1);
+                    SetCookie("code",json.code,1);
+                    SetCookie("role",json.role,1);
+                    window.location.href="index.html";
+                }
+                else if(json.result=="no such a student"){
+                    alert("找不到该学生");
+                }
+                else if(json.result=="password error")
+                {
+                    alert("密码不对，请重新输入");
+                }
+                else if(json.result=="you can not login the system now")
+                {
+                    alert("该账号无法登陆");
+                }
+                else if(json.result=="no such a teacher")
+                {
+                    alert("找不到该老师");
+                }
+            },
+            error:function() {
+                alert("无法连接服务器！,请稍后重试");
+            },
+            complete:function () {
+                $("#login").prop("disabled",false);
+                $("#login").val("登录")
+            }
+        });
+    }
+
+    $(function(){
+
+        $("#username").keydown(function(event){
+            var  e=event||window.event;
+            if(e.keyCode==13){
+
+                $("#password").focus();
+            }
+
+        });
+
+        $("#password").keydown(function(event){
+            var  e=event||window.event;
+            if(e.keyCode==13){
+
+                login();
+            }
+
+        });
+
+        $("#login").unbind("click").on("click",function () {
+            login();
+        })
+
+    });
+
+
+</script>
+
+</body>
+</html>

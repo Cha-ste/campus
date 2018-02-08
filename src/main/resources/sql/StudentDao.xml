@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocean.dao.StudentDao">
+	<resultMap id="student" type="com.ocean.model.Student" >
+		<result property="id" column="id"/>
+		<result property="studentNo" column="s_no"/>
+		<result property="studentName" column="s_name"/>
+		<result property="studentTell" column="s_tell"/>
+		<result property="studentMail" column="s_mail"/>
+		<result property="studentPicture" column="s_picture"/>
+		<result property="studentSex" column="s_sex"/>
+		<result property="pId" column="p_id"/>
+		<result property="pName" column="p_name"/>
+		<result property="classNo" column="class_no"/>
+		<result property="className" column="c_name"/>
+		<result property="password" column="password"/>
+		<result property="status" column="status"/>
+	</resultMap>
+	
+	<!-- 添加学生，新添加的学生都默认为1状态，既可登陆状态 ，0为不可登录状态-->
+	<insert id="addStudent" parameterType="com.ocean.model.Student">
+		insert into student
+		(
+			id,
+			s_no,
+			s_name,
+			s_tell,
+			s_mail,
+			s_picture,
+			s_sex,
+			i_id,
+			p_id,
+			class_no,
+			password,
+			status
+		)
+		values
+		(
+			#{id},
+			#{studentNo},
+			#{studentName},
+			#{studentTell},
+			#{studentMail},
+			#{studentPicture},
+			#{studentSex},
+			#{instituteId},
+			#{pId},
+			#{classNo},
+			#{studentNo},
+			'1'
+		)
+	</insert>
+	
+	<select id="selectAll" resultMap="student">
+		select *
+		from student
+	</select>
+	
+	<!-- 要返回字段：包括基本信息，专业名称和班级名称 -->
+	<select id="selectStudent" parameterType="map" resultMap="student">
+		select *
+		from 
+		(
+			select id,s_no,s_name,s_tell,s_mail,s_picture,s_sex,class_no,
+			c_name,s.p_id,p_name,i_id,password,status
+			from student as s,class as c,profession as p
+			where class_no=c_no and s.p_id=p.p_id
+		) as A
+		<trim prefix="where" prefixOverrides="or |and ">
+			i_id=#{instituteId}
+			<if test="pId != null and pId != ''">
+				and p_id=#{pId}
+			</if>
+			<if test="classNo != null and classNo != ''">
+				and class_no=#{classNo}
+			</if>
+			<if test="keyword != null and keyword != '' ">
+				and (
+					s_no like '%${keyword}%'
+					or s_name like '%${keyword}%'
+					or s_tell like '%${keyword}%'
+					or s_mail like '%${keyword}%'
+					or c_name like '%${keyword}%'
+				)
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="selectTotal" parameterType="map" resultType="int">
+		select count(*) as total
+		from 
+		(
+			select id,s_no,s_name,s_tell,s_mail,s_picture,
+			s_sex,class_no,c_name,s.p_id,i_id,password
+			from student as s,class as c
+			where class_no=c_no
+		) as A
+		<trim prefix="where" prefixOverrides="or |and ">
+			i_id=#{instituteId}
+			<if test="pId != null and pId != ''">
+				and p_id=#{pId}
+			</if>
+			<if test="classNo != null and classNo != ''">
+				and class_no=#{classNo}
+			</if>
+			<if test="key != null and key != '' ">
+				and (
+					s_no like '%${key}%'
+					or s_name like '%${key}%'
+					or s_tell like '%${key}%'
+					or s_mail like '%${key}%'
+					or c_name like '%${key}%'
+				)
+			</if>
+		</trim>
+	</select>
+	
+	<update id="updateStudent" parameterType="com.ocean.model.Student">
+		update student
+		set
+			s_no=#{studentNo},
+			s_name=#{studentName},
+			s_tell=#{studentTell},
+			s_mail=#{studentMail},
+			s_picture=#{studentPicture},
+			password=#{password},
+			class_no=#{classNo},
+			i_id=#{instituteId},
+			p_id=#{pId}
+		where id=#{id}
+	</update>
+	
+	<select id="getStudent" parameterType="string" resultMap="student">
+		select *
+		from 
+		(
+			select id,s_no,s_name,s_tell,s_mail,s_picture,s_sex,class_no,
+			c_name,s.p_id,p_name,i_id,status
+			from student as s,class as c,profession as p
+			where class_no=c_no and s.p_id=p.p_id
+		) as A
+		where id=#{id}
+	</select>
+	
+	<select id="getStudentByClassNo" parameterType="string" resultMap="student">
+		select id,s_no,s_name
+		from student
+		where class_no=#{classNo}
+	</select>
+	
+	<select id="getStudentByInstituteId" parameterType="map" resultMap="student">
+		select *
+		from 
+		(
+			select id,s_no,s_name,s_tell,s_mail,s_picture,s_sex,class_no,
+			c_name,s.p_id,p_name,i_id,password,status
+			from student as s,class as c,profession as p
+			where class_no=c_no and s.p_id=p.p_id
+		) as A
+		<trim prefix="where" prefixOverrides="or |and ">
+			i_id=#{instituteId}
+			<if test="pId != null and pId != ''">
+				and p_id=#{pId}
+			</if>
+			<if test="classNo != null and classNo != ''">
+				and class_no=#{classNo}
+			</if>
+			<if test="keyword != null and keyword != '' ">
+				and (
+					s_no like '%${keyword}%'
+					or s_name like '%${keyword}%'
+					or s_tell like '%${keyword}%'
+					or s_mail like '%${keyword}%'
+					or c_name like '%${keyword}%'
+				)
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getTotal" parameterType="map" resultType="int">
+		select count(*)
+		from 
+		(
+			select id,s_no,s_name,s_tell,s_mail,s_picture,s_sex,class_no,c_name,s.p_id,p_name,i_id,password
+			from student as s,class as c,profession as p
+			where class_no=c_no and s.p_id=p.p_id
+		) as A
+		<trim prefix="where" prefixOverrides="or |and ">
+			i_id=#{instituteId}
+			<if test="pId != null and pId != ''">
+				and p_id=#{pId}
+			</if>
+			<if test="classNo != null and classNo != ''">
+				and class_no=#{classNo}
+			</if>
+			<if test="key != null and key != '' ">
+				and (
+					s_no like '%${key}%'
+					or s_name like '%${key}%'
+					or s_tell like '%${key}%'
+					or s_mail like '%${key}%'
+					or c_name like '%${key}%'
+				)
+			</if>
+		</trim>
+	</select>
+	
+	<delete id="deleteStudent" parameterType="string">
+		delete from student
+		where id=#{id}
+	</delete>
+	
+	<update id="freezeStudent" parameterType="string" >
+		update student
+		set status='0'
+		where id=#{id}
+	</update>
+	
+	<update id="unFreezeStudent" parameterType="string" >
+		update student
+		set status='1'
+		where id=#{id}
+	</update>
+	
+	<select id="getStudentByAccount" parameterType="string" resultMap="student">
+		select *
+		from student
+		where s_no=#{account}
+	</select>
+	
+	<update id="updatePassword" parameterType="map">
+		update student
+		set password=#{newPassword}
+		where s_no=#{account}
+	</update>
+	
+	<select id="selectStudentInClass" parameterType="map" resultMap="student">
+		select *
+		from 
+		(
+			select id,s_no,s_name,s_tell,s_mail,s_picture,s_sex,class_no,
+			c_name,s.p_id,p_name,i_id,password,status
+			from student as s,class as c,profession as p
+			where class_no=c_no and s.p_id=p.p_id
+		) as A
+		<trim prefix="where" prefixOverrides="or |and ">
+			class_no=#{classNo}
+			<if test="key != null and key != '' ">
+				and (
+					s_no like '%${key}%'
+					or s_name like '%${key}%'
+					or s_tell like '%${key}%'
+					or s_mail like '%${key}%'
+				)
+			</if>
+		</trim>
+		limit #{firstRecord},#{pageSize}
+	</select>
+	
+	<select id="getTotalRecord" parameterType="map" resultType="int">
+		select count(*)
+		from 
+		(
+			select id,s_no,s_name,s_tell,s_mail,s_picture,s_sex,class_no,
+			c_name,s.p_id,p_name,i_id,password,status
+			from student as s,class as c,profession as p
+			where class_no=c_no and s.p_id=p.p_id
+		) as A
+		<trim prefix="where" prefixOverrides="or |and ">
+			class_no=#{classNo}
+			<if test="key != null and key != '' ">
+				and (
+					s_no like '%${key}%'
+					or s_name like '%${key}%'
+					or s_tell like '%${key}%'
+					or s_mail like '%${key}%'
+				)
+			</if>
+		</trim>
+	</select>
+	
+</mapper>
