@@ -1,6 +1,6 @@
 package ocean.jpaDemo.controller;
 
-import jpaDemo.entity.Person;
+import ocean.jpaDemo.entity.Person;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

@@ -1,8 +1,8 @@
 package ocean.jpaDemo.controller;
 
-import jpaDemo.entity.Person;
-import jpaDemo.entity.Type;
-import jpaDemo.entity.Worker;
+import ocean.jpaDemo.entity.Person;
+import ocean.jpaDemo.entity.Type;
+import ocean.jpaDemo.entity.Worker;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;

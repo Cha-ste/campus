@@ -1,7 +1,8 @@
 package ocean.jpaDemo.controller;
 
-import jpaDemo.entity.Person;
-import jpaDemo.entity.TestAnnotation;
+
+import ocean.jpaDemo.entity.Person;
+import ocean.jpaDemo.entity.TestAnnotation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
