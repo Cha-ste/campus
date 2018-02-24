@@ -18,6 +18,7 @@ import com.ocean.service.AdminService;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -29,7 +30,7 @@ public class AdminController {
 
     @RequestMapping(value = "/login")
     @ResponseBody
-    public JSONObject login(@RequestBody JSONObject json) {
+    public JSONObject login(@RequestBody JSONObject json, RedirectAttributes redirectAttributes) {
         String account = json.getString("account");
         String password = json.getString("password");
         json.clear();
@@ -50,6 +51,9 @@ public class AdminController {
         } else {
             json.put("result", "no such a manager");
         }
+
+        //这属性要在前端接收，不然add了就没什么意义
+        redirectAttributes.addFlashAttribute("success", "just test");
 
         return json;
     }

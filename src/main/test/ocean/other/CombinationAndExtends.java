@@ -20,22 +20,22 @@ public class CombinationAndExtends {
 
 class Combination{
 
-    private Test t = new Test();
+    private Man t = new Man();
     public void sport(){
         t.run();
         System.out.println("and at the same time, i am singing");
     }
 
-    public Test getT() {
+    public Man getT() {
         return t;
     }
 
-    public void setT(Test t) {
+    public void setT(Man t) {
         this.t = t;
     }
 }
 
-class MyExtends extends Test{
+class MyExtends extends Man {
     private String age;
 
 
@@ -53,7 +53,7 @@ class MyExtends extends Test{
     }
 }
 
-class Test{
+class Man {
     private String name;
     private String sex;
 

@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class TestJunit {
+public class ManJunit {
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
@@ -134,7 +134,7 @@ public class TestJunit {
         //log4j需要和Spring或者Junit结合，才能使用？？？？结果是Nop，只要加一个配置文件，就能使用者东西打印log了
         //那么，log4j是用来打印什么信息的呢？如何将报错信息打印出来？
         logger.info("is so easy, so don't afraid to try something you haven't understood");
-        TestJunit.InnerClass innerClass = new TestJunit.InnerClass();
+        ManJunit.InnerClass innerClass = new ManJunit.InnerClass();
         int a = 1/0;
         System.out.println(a);
         innerClass.changeName("heaven");
