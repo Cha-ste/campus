@@ -1256,6 +1256,27 @@ function derive(page) {
                 "pageSize":20,//每页显示12条
                 "pageIndex":page,//第几页
             };
+
+            /*$.fileDownload('/student/exportExcel', {
+                httpMethod: "GET",
+                // data: data,
+                successCallback: function () {
+                    alert("导出成功!");
+                    // $.message(JSON.parse('{"type":"success","content":"导出成功!"}'));
+                    // $modal.modal('close');
+                },
+                failCallback: function (html) {
+                    var $html = $.parseHTML(html);
+                    var rst = JSON.parse($($html)[0].innerHTML);
+                    alert("导出失败!");
+                    /!*$.message({
+                        type: 'error',
+                        content: rst.errmsg
+                    });*!/
+                    // $modal.modal('close');
+                }
+            });*/
+
             $.ajax({
                 url: "/student/exportExcel",
                 type: "post",

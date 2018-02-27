@@ -311,7 +311,7 @@ INSERT INTO `server` VALUES ('3ba30d4a-de2d-44b8-be79-772e54bbbdb9', '游泳池'
 INSERT INTO `server` VALUES ('75adc6c3-b465-4a6a-b5fc-46d5a4c030d5', '校医院', '13549977452', '紫荆路');
 
 -- ----------------------------
--- Table structure for student
+-- Table structure for StudentVo
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
@@ -330,7 +330,7 @@ CREATE TABLE `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of student
+-- Records of StudentVo
 -- ----------------------------
 INSERT INTO `student` VALUES ('7d8ac129-7273-43f6-840e-667be10704b3', '23314632213', '陈晓春', '13664548782', '../studentPic/1491642518539.jpg', '31649874656@qq.com', '1', '342660ca-b191-4dc2-bf6a-56a7141d18a8', '98588511-7d3e-4df2-8d3e-611220822d2d', '女', '23314632213', '1');
 INSERT INTO `student` VALUES ('1d2c5992-0a66-499a-937c-3508fde71c5b', '2013245523', '梅长苏', '13566444723', '../studentPic/1492314434183.jpg', '21345962218@qq.com', '1', '95bcf414-afa3-4802-901b-6587736930f1', '3e030dba-32e7-44c6-ab2a-f75247fad410', '女', '123', '1');

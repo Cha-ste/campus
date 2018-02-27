@@ -1,30 +1,26 @@
 package com.ocean.controller;
 
-import java.io.File;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
+import com.ocean.easyPoi.StudentVo;
 import com.ocean.model.Student;
 import com.ocean.pojo.PageSelect;
 import com.ocean.service.StudentService;
 import com.ocean.util.StudentJxlExcel;
-
+import com.ocean.util.WebUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.jeecgframework.poi.excel.ExcelExportUtil;
+import org.jeecgframework.poi.excel.entity.ExportParams;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.OutputStream;
+import java.util.*;
 
 /**
  * RequestMapping  前端页面访问接口
@@ -85,7 +81,7 @@ public class StudentController {
     }
 
     //导出
-    @RequestMapping(value = "/exportExcel")
+    @RequestMapping(value = "/exportExcel", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject exportExcel(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject json) {
         long before = json.getLong("code");
@@ -132,8 +128,30 @@ public class StudentController {
         if ((now - before) < timeOut) {
             if (TeacherController.isAllow(groupId) == true) {
                 List<Student> list = service.getStudentByInstituteId(map);
+                //换成输出流的方式，差前端接收
+//                List<StudentVo> students = new ArrayList<>();
+//                for (Student student : list) {
+//                    StudentVo studentVo = new StudentVo();
+//                    studentVo.setStudentNo(student.getStudentNo());
+//                    studentVo.setClassName(student.getClassName());
+//                    studentVo.setSex(student.getStudentSex());
+//                    students.add(studentVo);
+//                }
+//                Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("学生信息", "学生信息"), StudentVo.class, students);
+//                try {
+//                    response.setContentType("application/vnd.ms-excel; charset = utf-8");
+//                    response.setHeader("Set-Cookie", "fileDownload=true; path=/");
+//                    response.setHeader("Content-Disposition", "attachment; filename=" + WebUtils.fileNameInDifferenceBrowser("学生信息.xls", request));
+//                    OutputStream os = response.getOutputStream();
+//                    if (workbook != null) {
+//                        workbook.write(os);
+//                        os.close();
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 //路径选择有问题，待解决
-                String path = "D://excel/";
+                String path = "C://excel/";
                 StudentJxlExcel.writeExcel(path, list);
                 json.put("code", now);
                 json.put("account", account);
@@ -421,7 +439,7 @@ public class StudentController {
         if ((now - before) < timeOut) {
             Student student = service.getStudent(id);
 
-            json.put("student", student);
+            json.put("StudentVo", student);
             json.put("code", now);
             json.put("account", account);
             json.put("groupId", groupId);

@@ -9,7 +9,7 @@ public class Client {
 	{
 ////		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring.xml");
 //		
-//		StudentDAOImpl student = (StudentDAOImpl)ctx.getBean("StudentDAOImpl");
-//		student.addStudent("Siosd");
+//		StudentDAOImpl StudentVo = (StudentDAOImpl)ctx.getBean("StudentDAOImpl");
+//		StudentVo.addStudent("Siosd");
 	}
 }

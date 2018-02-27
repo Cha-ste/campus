@@ -71,10 +71,10 @@ public class ClientController {
         long now = new Date().getTime();
         json.clear();
 
-        if ("student".equals(role)) {
+        if ("StudentVo".equals(role)) {
             Student student = studentService.getStudentByAccount(account);
             if (student == null) {
-                json.put("result", "no such a student");
+                json.put("result", "no such a StudentVo");
             }
             // 账号被冻结
             else if (student.getStatus().equals("0")) {
@@ -536,7 +536,7 @@ public class ClientController {
         if ((now - before) < timeOut) {
             Student student = studentService.getStudent(id);
 
-            json.put("student", student);
+            json.put("StudentVo", student);
             json.put("code", now);
             json.put("account", account);
             json.put("result", "success");

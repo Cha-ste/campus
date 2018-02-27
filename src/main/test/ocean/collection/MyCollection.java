@@ -12,7 +12,7 @@ public class MyCollection {
 		};
 		System.out.println(student);
 		List list = new ArrayList();
-		list.add("student");
+		list.add("StudentVo");
 		list.add(student);
 	}
 }

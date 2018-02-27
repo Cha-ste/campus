@@ -104,7 +104,7 @@ public class StudentJxlExcel {
                 row1.createCell(j++).setCellValue(student.getStudentTell());
                 row1.createCell(j++).setCellValue(student.getStudentMail());
             }
-            File file = new File(path + "student" + System.currentTimeMillis() + ".xls");
+            File file = new File(path + "StudentVo" + System.currentTimeMillis() + ".xls");
             FileOutputStream stream = FileUtils.openOutputStream(file);
             //写出sheet表
             workbook.write(stream);
