@@ -29,5 +29,8 @@ public class NumberTransfer {
         System.out.println("look: " + look);
         System.out.println(new BigDecimal(num).setScale(0).toString());
 
+        System.out.println(2<<4);
+
     }
+
 }
