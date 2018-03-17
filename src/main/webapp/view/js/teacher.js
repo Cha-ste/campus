@@ -15,7 +15,7 @@ function academy() {
         "code": ReadCookie("code"),
     };
     $.ajax({
-        url: "/client/selectInstitute",
+        url: "../client/selectInstitute",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -64,7 +64,7 @@ function academycCick(index,text,val) {
             "pageIndex":index,//第几页
         };
         $.ajax({
-            url: "/client/selectTeacher",
+            url: "../client/selectTeacher",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -147,7 +147,7 @@ function academycCickPage(index,text,val) {
         "pageIndex":index,//第几页
     };
     $.ajax({
-        url: "/client/selectTeacher",
+        url: "../client/selectTeacher",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -217,7 +217,7 @@ function details() {
             "code": ReadCookie("code"),
         }
         $.ajax({
-            url: "/client/getTeacher",
+            url: "../client/getTeacher",
             type: "post",
             dataType: "json",
             contentType: "application/json",

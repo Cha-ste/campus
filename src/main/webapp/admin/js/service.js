@@ -20,7 +20,7 @@ function information(index,text) { //index代表页码 val代表类型0 1 2 3 te
 
     };
     $.ajax({
-        url: "/server/selectServer",
+        url: "../server/selectServer",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -92,7 +92,7 @@ function informationPage(index,text) { //index代表页码 val代表类型0 1 2 
         "pageIndex":index,//第几页
     };
     $.ajax({
-        url: "/server/selectServer",
+        url: "../server/selectServer",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -152,7 +152,7 @@ function expurgate() {
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/server/deleteServer",
+                url: "../server/deleteServer",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -185,7 +185,7 @@ function amend(){
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/server/getServer",
+            url: "../server/getServer",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -215,7 +215,7 @@ function amend(){
 
             }
             $.ajax({
-                url: "/server/updateServer",
+                url: "../server/updateServer",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -282,7 +282,7 @@ function addServer(){
 
             }
             $.ajax({
-                url: "/server/addServer",
+                url: "../server/addServer",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",

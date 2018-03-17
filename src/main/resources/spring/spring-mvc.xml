@@ -15,12 +15,13 @@
 	<!-- 组件扫描 -->
 	<context:component-scan base-package="com.ocean"/>
 
-
-	<!-- 加载默认适配器和处理器 -->
+	<!-- 注解扫描驱动 -->
 	<mvc:annotation-driven/>
 
+	<!-- 加载默认适配器和处理器 -->
 	<mvc:default-servlet-handler/>
 
+	<!-- 切面 -->
 	<aop:aspectj-autoproxy />
 	<mvc:interceptors>
 

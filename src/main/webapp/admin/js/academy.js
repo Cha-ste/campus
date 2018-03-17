@@ -225,7 +225,7 @@ function academy() {
         "groupId":ReadCookie("groupId"),
     };
     $.ajax({
-        url: "/institute/selectInstitute",
+        url: "../institute/selectInstitute",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -281,7 +281,7 @@ function profession(val,num){
         "instituteId":val
     };
     $.ajax({
-        url: "/profession/getProfession",
+        url: "../profession/getProfession",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -335,7 +335,7 @@ function className(val,classno,num){
         "pId":val
     };
     $.ajax({
-        url: "/class/getClassBypId",
+        url: "../class/getClassBypId",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -390,7 +390,7 @@ function academycCick(index,id,pId,classNo,text) {
             "keyword":text
         };
     $.ajax({
-            url: "/student/getStudentByInstituteId",
+            url: "../student/getStudentByInstituteId",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -480,7 +480,7 @@ function academycCickPage(index,id,pId,classNo,text){
         "keyword":text
     };
     $.ajax({
-        url: "/student/getStudentByInstituteId",
+        url: "../student/getStudentByInstituteId",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -561,7 +561,7 @@ function details() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/student/getStudent",
+            url: "../student/getStudent",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -613,7 +613,7 @@ function amend() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/profession/getProfession",
+            url: "../profession/getProfession",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -644,7 +644,7 @@ function amend() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/student/getStudent",
+            url: "../student/getStudent",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -758,7 +758,7 @@ function amend() {
                     "id":id
                 }
                 $.ajax({
-                    url: "/student/updateStudent",
+                    url: "../student/updateStudent",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -803,7 +803,7 @@ function deleted() {
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/student/deleteStudent",
+                url: "../student/deleteStudent",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -862,7 +862,7 @@ function addAdmin() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/profession/getProfession",
+            url: "../profession/getProfession",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -975,7 +975,7 @@ function addAdmin() {
                     "pId":profession
                 }
                 $.ajax({
-                    url: "/student/addStudent",
+                    url: "../student/addStudent",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1016,7 +1016,7 @@ function getClass(val) {
         "groupId":ReadCookie("groupId"),
     }
     $.ajax({
-        url: "/class/getClassBypId",
+        url: "../class/getClassBypId",
         type: "post",
         dataType: "json",
         contentType: "application/json",
@@ -1059,7 +1059,7 @@ function freeze() {
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/student/freezeStudent",
+                    url: "../student/freezeStudent",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1101,7 +1101,7 @@ function unfreeze() {
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/student/unFreezeStudent",
+                    url: "../student/unFreezeStudent",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1278,7 +1278,7 @@ function derive(page) {
             });*/
 
             $.ajax({
-                url: "/student/exportExcel",
+                url: "../student/exportExcel",
                 type: "post",
                 dataType: "json",
                 data: JSON.stringify(sendData),
@@ -1336,7 +1336,7 @@ function deleteBatch(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/student/deleteStudent",
+                    url: "../student/deleteStudent",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1385,7 +1385,7 @@ function addOrginazer(){
                     "groupId":ReadCookie("groupId"),
                 }
                 $.ajax({
-                    url: "/institute/addInstitute",
+                    url: "../institute/addInstitute",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1431,7 +1431,7 @@ function deleteOrginazer(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/institute/deleteInstitute",
+                    url: "../institute/deleteInstitute",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1475,7 +1475,7 @@ function deleteOrginazer(){
                         "id":id
                     }
                     $.ajax({
-                        url: "/institute/updateInstitute",
+                        url: "../institute/updateInstitute",
                         type: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -1528,7 +1528,7 @@ function deleteOrginazer(){
                         "instituteId":id
                     }
                     $.ajax({
-                        url: "/profession/addProfession",
+                        url: "../profession/addProfession",
                         type: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -1569,7 +1569,7 @@ function deleteOrginazer(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/profession/deleteProfession",
+                    url: "../profession/deleteProfession",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1613,7 +1613,7 @@ function deleteOrginazer(){
                         "pId":id
                     }
                     $.ajax({
-                        url: "/profession/updateProfession",
+                        url: "../profession/updateProfession",
                         type: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -1669,7 +1669,7 @@ function deleteOrginazer(){
 
                     }
                     $.ajax({
-                        url: "/class/addClass",
+                        url: "../class/addClass",
                         type: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -1710,7 +1710,7 @@ function deleteOrginazer(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/class/deleteClass",
+                    url: "../class/deleteClass",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -1754,7 +1754,7 @@ function deleteOrginazer(){
                         "classNo":id
                     }
                     $.ajax({
-                        url: "/class/updateClass",
+                        url: "../class/updateClass",
                         type: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -1800,7 +1800,7 @@ function deleteOrginazer(){
 //             "name":text,
 //         };
 //         $.ajax({
-//             url: "/organization/selectOrganizationByName",
+//             url: "../organization/selectOrganizationByName",
 //             type: "post",
 //             dataType: "json",
 //             data: JSON.stringify(sendData),

@@ -24,7 +24,7 @@ function academy() {
         "groupId":ReadCookie("groupId"),
     };
     $.ajax({
-        url: "/institute/selectInstitute",
+        url: "../institute/selectInstitute",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -74,7 +74,7 @@ function academycCick(index,text,val) {
             "pageIndex":index,//第几页
         };
         $.ajax({
-            url: "/teacher/selectTeacher",
+            url: "../teacher/selectTeacher",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -186,7 +186,7 @@ function academycCickPage(index,text,val) {
         "pageIndex":index,//第几页
     };
     $.ajax({
-        url: "/teacher/selectTeacher",
+        url: "../teacher/selectTeacher",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -294,7 +294,7 @@ function details() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/teacher/getTeacher",
+            url: "../teacher/getTeacher",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -364,7 +364,7 @@ function amend() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/teacher/getTeacher",
+            url: "../teacher/getTeacher",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -480,7 +480,7 @@ function amend() {
                     "id":id,
                 }
                 $.ajax({
-                    url: "/teacher/updateTeacher",
+                    url: "../teacher/updateTeacher",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -522,7 +522,7 @@ function deleted() {
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/teacher/deleteTeacher",
+                url: "../teacher/deleteTeacher",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -637,7 +637,7 @@ function addAdmin() {
                     "instituteNo":$(".academy .content ul li.on").attr("id"),
                 }
                 $.ajax({
-                    url: "/teacher/addTeacher",
+                    url: "../teacher/addTeacher",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -693,7 +693,7 @@ function deleteBatch(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/teacher/deleteTeacherBatch",
+                    url: "../teacher/deleteTeacherBatch",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -735,7 +735,7 @@ function freeze() {
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/teacher/freeze",
+                    url: "../teacher/freeze",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -777,7 +777,7 @@ function unfreeze() {
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/teacher/unFreeze",
+                    url: "../teacher/unFreeze",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -819,7 +819,7 @@ function search() {
             "pageIndex":1,//第几页
         };
         $.ajax({
-            url: "/teacher/selectTeacher",
+            url: "../teacher/selectTeacher",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -930,7 +930,7 @@ function search() {
             "pageIndex":1,//第几页
         };
         $.ajax({
-            url: "/teacher/selectTeacher",
+            url: "../teacher/selectTeacher",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -1120,7 +1120,7 @@ function derive(page) {
                 "pageIndex":page,//第几页
             };
             $.ajax({
-                url: "/teacher/exportExcel",
+                url: "../teacher/exportExcel",
                 type: "post",
                 dataType: "json",
                 data: JSON.stringify(sendData),

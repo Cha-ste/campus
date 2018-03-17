@@ -80,7 +80,7 @@ function academy() {
         "groupId":ReadCookie("groupId"),
     };
     $.ajax({
-        url: "/institute/selectInstitute",
+        url: "../institute/selectInstitute",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -139,7 +139,7 @@ function academycCick(index,text,cou,clas) {
             "classNo":clas
         };
         $.ajax({
-            url: "/schedule/getScheduleInInstitute",
+            url: "../schedule/getScheduleInInstitute",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -225,7 +225,7 @@ function allCourse(val) {
         "groupId":ReadCookie("groupId"),
     }
     $.ajax({
-        url: "/course/getCourseByInstituteId",
+        url: "../course/getCourseByInstituteId",
         type: "post",
         dataType: "json",
         contentType: "application/json",
@@ -259,7 +259,7 @@ function allClass(val) {
         "groupId":ReadCookie("groupId"),
     }
     $.ajax({
-        url: "/class/selectClass",
+        url: "../class/selectClass",
         type: "post",
         dataType: "json",
         contentType: "application/json",
@@ -297,7 +297,7 @@ function academycCickPage(index,text,cou,clas) {
         "classNo":clas
     };
     $.ajax({
-        url: "/schedule/getScheduleInInstitute",
+        url: "../schedule/getScheduleInInstitute",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -426,7 +426,7 @@ function amend() {
                     "groupId":ReadCookie("groupId"),
                 }
                 $.ajax({
-                    url: "/schedule/updateCourseForClass",
+                    url: "../schedule/updateCourseForClass",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -516,7 +516,7 @@ function addTeacher(val) {
                     "groupId":ReadCookie("groupId"),
                 }
                 $.ajax({
-                    url: "/schedule/addCourseForClass",
+                    url: "../schedule/addCourseForClass",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -560,7 +560,7 @@ function insitituClass(val) {
         "groupId":ReadCookie("groupId"),
     }
     $.ajax({
-        url: "/class/selectClass",
+        url: "../class/selectClass",
         type: "post",
         dataType: "json",
         contentType: "application/json",
@@ -594,7 +594,7 @@ function couserTeacher(val) {
         "groupId":ReadCookie("groupId"),
     }
     $.ajax({
-        url: "/course/getCourseByInstituteId",
+        url: "../course/getCourseByInstituteId",
         type: "post",
         dataType: "json",
         contentType: "application/json",
@@ -634,7 +634,7 @@ function teacherCourse(val) {
         "groupId":ReadCookie("groupId"),
     }
     $.ajax({
-        url: "/teacher/getTeacherByCourseId",
+        url: "../teacher/getTeacherByCourseId",
         type: "post",
         dataType: "json",
         contentType: "application/json",
@@ -670,7 +670,7 @@ function deleted() {
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/schedule/deleteSchedule",
+                url: "../schedule/deleteSchedule",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -718,7 +718,7 @@ function deleteBatch(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/schedule/deleteSchedule",
+                    url: "../schedule/deleteSchedule",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",

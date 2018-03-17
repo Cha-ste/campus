@@ -21,7 +21,7 @@ function information(index,val,state,text) { //index代表页码 val代表类型
 
     };
     $.ajax({
-        url: "/client/selectNews",
+        url: "../client/selectNews",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -99,7 +99,7 @@ function informationPage(index,val,state,text) { //index代表页码 val代表�
 
     };
     $.ajax({
-        url: "/client/selectNews",
+        url: "../client/selectNews",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),

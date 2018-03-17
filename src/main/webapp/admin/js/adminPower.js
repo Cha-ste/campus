@@ -24,7 +24,7 @@ function academy() {
         "groupId":ReadCookie("groupId"),
     };
     $.ajax({
-        url: "/institute/selectInstitute",
+        url: "../institute/selectInstitute",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -70,7 +70,7 @@ function academycCick() {
             "groupId":ReadCookie("groupId"),
         };
         $.ajax({
-            url: "/admin/selectAdmin",
+            url: "../admin/selectAdmin",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -146,7 +146,7 @@ function amend() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/admin/getAdmin",
+            url: "../admin/getAdmin",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -223,7 +223,7 @@ function amend() {
 
                 }
                 $.ajax({
-                    url: "/admin/updateAdmin",
+                    url: "../admin/updateAdmin",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -265,7 +265,7 @@ function deleted() {
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/admin/deleteAdmin",
+                url: "../admin/deleteAdmin",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -332,7 +332,7 @@ function addAdmin() {
 
                 }
                 $.ajax({
-                    url: "/admin/addAdmin",
+                    url: "../admin/addAdmin",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -388,7 +388,7 @@ function deleteBatch(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/admin/deleteAdminBatch",
+                    url: "../admin/deleteAdminBatch",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -426,7 +426,7 @@ function search() {
             "instituteCode":$(".academy .content ul li.on").attr("id"),
         };
         $.ajax({
-            url: "/admin/selectAdminG",
+            url: "../admin/selectAdminG",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),

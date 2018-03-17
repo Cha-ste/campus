@@ -106,7 +106,7 @@
                 "code": ReadCookie("code"),
             };
             $.ajax({
-                url: "/client/logOut",
+                url: "../client/logOut",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -145,7 +145,7 @@
                 "newPassword": $("#newPassword").val(),
             }
             $.ajax({
-                url: "/client/updatePassword",
+                url: "../client/updatePassword",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",

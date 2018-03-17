@@ -19,7 +19,7 @@ function information(index,text) { //index代表页码 val代表类型0 1 2 3 te
 
     };
     $.ajax({
-        url: "/client/selectServer",
+        url: "../client/selectServer",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -84,7 +84,7 @@ function informationPage(index,text) { //index代表页码 val代表类型0 1 2 
         "pageIndex":index,//第几页
     };
     $.ajax({
-        url: "/client/selectServer",
+        url: "../client/selectServer",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),

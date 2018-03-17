@@ -35,7 +35,7 @@ function schecle(year,term) {
             "term": term,
         };
         $.ajax({
-            url: "/client/getScheduleByTeacherId",
+            url: "../client/getScheduleByTeacherId",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -138,7 +138,7 @@ function schecle(year,term) {
             "term": term,
         };
         $.ajax({
-            url: "/client/getScheduleByClass",
+            url: "../client/getScheduleByClass",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),

@@ -17,7 +17,7 @@ function academycCick(index,text) {
         "pageIndex":index,//第几页
     };
     $.ajax({
-        url: "/client/selectStudent",
+        url: "../client/selectStudent",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -80,7 +80,7 @@ function academycCickPage(index,text) {
         "pageIndex":index,//第几页
     };
     $.ajax({
-        url: "/client/selectStudent",
+        url: "../client/selectStudent",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -134,7 +134,7 @@ function details() {
             "code": ReadCookie("code"),
         }
         $.ajax({
-            url: "/client/getStudent",
+            url: "../client/getStudent",
             type: "post",
             dataType: "json",
             contentType: "application/json",

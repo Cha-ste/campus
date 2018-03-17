@@ -24,13 +24,21 @@ public class NumberTransfer {
         String aim = String.valueOf("translate: " + result);
         System.out.println(aim);
 
-        double look = 13200000000000f;
+        double look = 13200000000000D;
         //损失精度
         System.out.println("look: " + look);
-        System.out.println(new BigDecimal(num).setScale(0).toString());
+        System.out.println(new BigDecimal(look).setScale(0).toString());
 
         System.out.println(2<<4);
 
+    }
+
+    @Test
+    public void testRounding(){
+        BigDecimal bigDecimal = new BigDecimal("2.55".toString()).setScale(0,BigDecimal.ROUND_HALF_EVEN);
+        System.out.println(bigDecimal);
+
+//        System.out.println(Double.valueOf("月"));
     }
 
 }

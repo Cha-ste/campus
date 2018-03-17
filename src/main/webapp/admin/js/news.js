@@ -23,7 +23,7 @@ function information(index,val,state,text) { //index代表页码 val代表类型
 
     };
     $.ajax({
-        url: "/news/selectNews",
+        url: "../news/selectNews",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -120,7 +120,7 @@ function informationPage(index,val,state,text) { //index代表页码 val代表�
 
     };
     $.ajax({
-        url: "/news/selectNews",
+        url: "../news/selectNews",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -206,7 +206,7 @@ function examine() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/news/getNews",
+            url: "../news/getNews",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -243,7 +243,7 @@ function expurgate() {
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/news/deleteNews",
+                url: "../news/deleteNews",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -281,7 +281,7 @@ function amend(){
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/news/getNews",
+            url: "../news/getNews",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -317,7 +317,7 @@ function amend(){
 
             }
             $.ajax({
-                url: "/news/updateNews",
+                url: "../news/updateNews",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -357,7 +357,7 @@ function publicNews(){
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/news/publicNews",
+                url: "../news/publicNews",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -388,7 +388,7 @@ function unpublic(){
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/news/unPublicNews",
+                url: "../news/unPublicNews",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -472,7 +472,7 @@ function addNews(){
 
                     }
                     $.ajax({
-                        url: "/news/saveNews",
+                        url: "../news/saveNews",
                         type: "post",
                         dataType: "json",
                         contentType: "application/json",

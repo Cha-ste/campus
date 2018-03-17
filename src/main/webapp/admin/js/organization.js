@@ -118,7 +118,7 @@ function academy() {
         "groupId":ReadCookie("groupId"),
     };
     $.ajax({
-        url: "/organization/selectOrganization",
+        url: "../organization/selectOrganization",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -183,7 +183,7 @@ function academycCick(index,text,val) {
             "pageIndex":index,//第几页
         };
         $.ajax({
-            url: "/organizer/selectOrganizer",
+            url: "../organizer/selectOrganizer",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -265,7 +265,7 @@ function academycCickPage(index,text,val) {
         "pageIndex":index,//第几页
     };
     $.ajax({
-        url: "/organizer/selectOrganizer",
+        url: "../organizer/selectOrganizer",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -338,7 +338,7 @@ function amend() {
             "groupId":ReadCookie("groupId"),
         }
         $.ajax({
-            url: "/organizer/getOrganizer",
+            url: "../organizer/getOrganizer",
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -382,7 +382,7 @@ function amend() {
                     "id":id,
                 }
                 $.ajax({
-                    url: "/organizer/updateOrganizer",
+                    url: "../organizer/updateOrganizer",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -424,7 +424,7 @@ function deleted() {
                 "groupId":ReadCookie("groupId"),
             };
             $.ajax({
-                url: "/organizer/deleteOrganizer",
+                url: "../organizer/deleteOrganizer",
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -480,7 +480,7 @@ function addAdmin() {
                     "organizationId":$(".academy .content ul li.on").attr("id"),
                 }
                 $.ajax({
-                    url: "/organizer/addOrganizer",
+                    url: "../organizer/addOrganizer",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -535,7 +535,7 @@ function deleteBatch(){
                     "groupId":ReadCookie("groupId"),
                 };
                 $.ajax({
-                    url: "/organizer/deleteOrganizerBatch",
+                    url: "../organizer/deleteOrganizerBatch",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -576,7 +576,7 @@ function search() {
             "pageIndex":1,//第几页
         };
         $.ajax({
-            url: "/organizer/selectOrganizer",
+            url: "../organizer/selectOrganizer",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),
@@ -736,7 +736,7 @@ function derive(page) {
                 "pageIndex":page,//第几页
             };
             $.ajax({
-                url: "/organizer/exportExcel",
+                url: "../organizer/exportExcel",
                 type: "post",
                 dataType: "json",
                 data: JSON.stringify(sendData),
@@ -793,7 +793,7 @@ function addOrginazer(){
                     "groupId":ReadCookie("groupId"),
                 }
                 $.ajax({
-                    url: "/organization/addOrganization",
+                    url: "../organization/addOrganization",
                     type: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -839,7 +839,7 @@ function deleteOrginazer(){
 	                "groupId":ReadCookie("groupId"),
 	            };
 	            $.ajax({
-	                url: "/organization/deleteOrganization",
+	                url: "../organization/deleteOrganization",
 	                type: "post",
 	                dataType: "json",
 	                contentType: "application/json",
@@ -882,7 +882,7 @@ function deleteOrginazer(){
                         "id":id
                     }
                     $.ajax({
-                        url: "/organization/updateOrganization",
+                        url: "../organization/updateOrganization",
                         type: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -928,7 +928,7 @@ function searchOrginazer() {
             "name":text,
         };
         $.ajax({
-            url: "/organization/selectOrganizationByName",
+            url: "../organization/selectOrganizationByName",
             type: "post",
             dataType: "json",
             data: JSON.stringify(sendData),

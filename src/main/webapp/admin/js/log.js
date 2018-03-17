@@ -16,7 +16,7 @@ $(function (){
 
     };
     $.ajax({
-        url: "/",
+        url: "../",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -59,7 +59,7 @@ function information(index,val,state,text) { //index代表页码 val代表类型
 
     };
     $.ajax({
-        url: "/",
+        url: "../",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
@@ -126,7 +126,7 @@ function informationPage(index,val,state,text) { //index代表页码 val代表�
 
     };
     $.ajax({
-        url: "/news/selectNews",
+        url: "../news/selectNews",
         type: "post",
         dataType: "json",
         data: JSON.stringify(sendData),
