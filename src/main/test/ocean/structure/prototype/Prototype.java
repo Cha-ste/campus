@@ -20,6 +20,7 @@ public class Prototype implements Cloneable {
     private String remark;
     private ArrayList<String> list = new ArrayList<>();
 
+    @Override
     public Prototype clone(){
         Prototype prototype = null;
 
@@ -51,6 +52,8 @@ public class Prototype implements Cloneable {
 
         prototype.option();
         prototype2.option();
+
+        System.out.println(prototype.equals(prototype2));
 
         Prototype prototype3 = new Prototype();
         prototype3.setRemark("属性：同样会复制过去吗？");

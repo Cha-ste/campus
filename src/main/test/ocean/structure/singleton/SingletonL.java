@@ -30,6 +30,7 @@ public class SingletonL {
  */
 class SingletonE {
     private static SingletonE instance;
+    private SingletonE(){}
     static {
         instance = new SingletonE();
     }
